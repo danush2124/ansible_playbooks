@@ -1,0 +1,5 @@
+- hosts: gigamon_nodes
+  connection: local
+  gather_facts: false  
+  roles: 
+    - add_node_to_fm

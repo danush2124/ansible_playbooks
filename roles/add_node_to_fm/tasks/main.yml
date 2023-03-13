@@ -1,0 +1,16 @@
+---
+# tasks file for add_node_to_fm
+- name: Add GVOS node to FM
+  uri:
+    url: https://{{fm_ip}}/api/v1.3/nodes?async=false
+    method: Post
+    user: "{{ fm_username }}"
+    password: "{{ fm_password }}"
+    force_basic_auth: yes
+    validate_certs: False
+    return_content: yes
+    timeout: 30
+    body: {"nodeAddSpecs": [{"nodeAddress": "{{ node_ip }}","username": "{{ node_username }}","password": "{{ node_password }}","httpsPort": "443","snmpVersion": "v2"}]}
+    body_format: json
+    status_code: 201,200
+  register: output

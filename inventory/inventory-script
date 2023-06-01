@@ -1,24 +1,20 @@
 {
-  "gigamon_nodes":{
-      "hosts":[
-          "10.61.110.63",
-          "10.61.110.65",
-          "10.61.110.66"
-],
-"vars":{
-        "var1": true
+    "dyngroup":{
+        "hosts":[
+            "cloud1.cloud.example.com",
+            "cloud2.cloud.example.com"
+        ],
+        "vars":{
+            "var1": true
         }
     },
-  "_meta":{
+    "_meta":{
         "hostvars":{
-            "10.61.110.63":{
+            "cloud1.cloud.example.com":{
                 "type":"web"
             },
-            "10.61.110.65":{
+            "cloud2.cloud.example.com":{
                 "type":"database"
-            },
-            "10.61.110.66":{
-                "type":"physical"
             }
         }
     }

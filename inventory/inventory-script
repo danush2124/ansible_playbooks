@@ -18,7 +18,7 @@
                 "type":"database"
             },
             "10.61.110.66":{
-                "type":"database"
+                "type":"physical"
             }
         }
     }

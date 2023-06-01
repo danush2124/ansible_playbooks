@@ -1,12 +1,12 @@
 {
-  "gigamon_nodes" : {
+  "gigamon_nodes":{
   "hosts":[
     "10.61.110.63",
     "10.61.110.65",
     "10.61.110.66"
 ],
 "vars":{
-            "var1": true
+        "var1": true
         }
     },
   "_meta":{

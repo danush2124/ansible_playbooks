@@ -1,21 +1,12 @@
 {
     "dyngroup":{
-        [
-            "cloud1.cloud.example.com",
-            "cloud2.cloud.example.com"
-        ],
-        "vars":{
-            "var1": true
-        }
-    },
-    "_meta":{
-        "hostvars":{
+        
             "cloud1.cloud.example.com":{
-                "type":"web"
+                "ip": "10.61.110.177"
             },
             "cloud2.cloud.example.com":{
-                "type":"database"
+                "ip": "10.61.110.177"
             }
-        }
+        
     }
 }

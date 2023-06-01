@@ -1,1 +1,240 @@
-#inventory Script
+{
+  "nodes" : [ {
+    "deviceId" : "10.61.110.63",
+    "deviceIp" : "10.61.110.63",
+    "topoNodeId" : "bdfbeb0ce6f2126c4171b186576b6a60",
+    "hostname" : "RL-HC3-2",
+    "family" : "H",
+    "model" : "HC3",
+    "boxId" : "17",
+    "swVersion" : "6.0.00",
+    "licensed" : true,
+    "clusterMode" : "Standalone",
+    "clusterModeAlias" : "Standalone",
+    "clusterId" : "10.61.110.63",
+    "masterPref" : 55,
+    "leaderPref" : 55,
+    "deviceIps" : [ "10.61.110.63" ],
+    "discOutcome" : "connFailed",
+    "failureDesc" : "Operation cannot be performed because Device's rootCA's certificate isn't added to the trustStore",
+    "healthState" : "red",
+    "healthStateReasons" : [ {
+      "severity" : "red",
+      "message" : "Operation cannot be performed because Device's rootCA's certificate isn't added to the trustStore"
+    } ],
+    "operStatus" : "operational",
+    "tags" : [ {
+      "tagKey" : "__placement",
+      "tagValues" : [ "TOOL_NODES" ]
+    } ],
+    "globalNodeId" : "6ea3e08d-4ad6-a3e0-d74ad-ea3e08d74ad",
+    "ubootVersion" : "1.0.4",
+    "serialNumber" : "J0105",
+    "configRefreshStatistics" : {
+      "totalAttempts" : 28784,
+      "successfulAttempts" : 21904,
+      "failureAttempts" : 6880,
+      "lastAttemptTime" : "2023-06-01T14:30:37Z",
+      "lastSuccessfulAttemptTime" : "2023-05-08T17:30:42Z",
+      "lastFailureAttemptTime" : "2023-06-01T14:30:37Z"
+    },
+    "statsCollectionCounters" : {
+      "totalAttempts" : 28782,
+      "successfulAttempts" : 21903,
+      "failureAttempts" : 2,
+      "lastAttemptTime" : "2023-05-08T17:31:05Z",
+      "lastSuccessfulAttemptTime" : "2023-05-08T17:26:05Z",
+      "lastFailureAttemptTime" : "2023-05-08T17:31:05Z",
+      "skipAttempts" : 6877,
+      "lastSkipAttemptTime" : "2023-06-01T14:26:17Z"
+    },
+    "trapCounters" : {
+      "totalBackOffCounterDueToNodeUnreachable" : 272
+    },
+    "behindNat" : false,
+    "configSaveCounters" : {
+      "totalAttempts" : 3434,
+      "failureAttempts" : 3434,
+      "lastAttemptTime" : "2023-06-01T14:23:07Z",
+      "lastFailureAttemptTime" : "2023-06-01T14:23:07Z"
+    },
+    "suppressed" : false,
+    "alarmCount" : 7
+  }, {
+    "deviceId" : "10.61.110.64",
+    "deviceIp" : "10.61.110.64",
+    "topoNodeId" : "47868cb8dd71b66a7ee9c5739bee78a5",
+    "hostname" : "RL-HC1-8",
+    "family" : "H",
+    "model" : "HC1",
+    "boxId" : "23",
+    "swVersion" : "5.10.01.01",
+    "licensed" : true,
+    "clusterMode" : "Standalone",
+    "clusterModeAlias" : "Standalone",
+    "clusterId" : "10.61.110.64",
+    "masterPref" : 55,
+    "leaderPref" : 55,
+    "deviceIps" : [ "10.61.110.64" ],
+    "discOutcome" : "connFailed",
+    "failureDesc" : "Operation cannot be performed because Device's rootCA's certificate isn't added to the trustStore",
+    "healthState" : "red",
+    "healthStateReasons" : [ {
+      "severity" : "red",
+      "message" : "Operation cannot be performed because Device's rootCA's certificate isn't added to the trustStore"
+    } ],
+    "operStatus" : "operational",
+    "tags" : [ {
+      "tagKey" : "__placement",
+      "tagValues" : [ "TAP_NODES" ]
+    } ],
+    "globalNodeId" : "509cf7d1-2f55-9cf7-172f5-09cf7d172f5",
+    "ubootVersion" : "1.0.2",
+    "serialNumber" : "H0E69",
+    "configRefreshStatistics" : {
+      "totalAttempts" : 29884,
+      "successfulAttempts" : 21435,
+      "failureAttempts" : 8449,
+      "lastAttemptTime" : "2023-06-01T14:30:37Z",
+      "lastSuccessfulAttemptTime" : "2023-05-08T17:30:47Z",
+      "lastFailureAttemptTime" : "2023-06-01T14:30:37Z"
+    },
+    "statsCollectionCounters" : {
+      "totalAttempts" : 29882,
+      "successfulAttempts" : 19748,
+      "failureAttempts" : 2570,
+      "lastAttemptTime" : "2023-05-08T17:31:05Z",
+      "lastSuccessfulAttemptTime" : "2023-05-08T17:26:16Z",
+      "lastFailureAttemptTime" : "2023-05-08T17:31:05Z",
+      "skipAttempts" : 7564,
+      "lastSkipAttemptTime" : "2023-06-01T14:26:17Z"
+    },
+    "behindNat" : false,
+    "suppressed" : false,
+    "alarmCount" : 21
+  }, {
+    "deviceId" : "10.61.110.65",
+    "deviceIp" : "10.61.110.65",
+    "topoNodeId" : "6c9b30ec6e1d74214dee7a3bc28efbb1",
+    "hostname" : "RL-TA25-1",
+    "family" : "H",
+    "model" : "TA25",
+    "boxId" : "24",
+    "swVersion" : "6.0.00",
+    "licensed" : true,
+    "clusterMode" : "Standalone",
+    "clusterModeAlias" : "Standalone",
+    "clusterId" : "10.61.110.65",
+    "masterPref" : 1,
+    "leaderPref" : 1,
+    "deviceIps" : [ "10.61.110.65" ],
+    "discOutcome" : "connFailed",
+    "failureDesc" : "Operation cannot be performed because Device's rootCA's certificate isn't added to the trustStore",
+    "healthState" : "red",
+    "healthStateReasons" : [ {
+      "severity" : "red",
+      "message" : "Operation cannot be performed because Device's rootCA's certificate isn't added to the trustStore"
+    } ],
+    "operStatus" : "operational",
+    "tags" : [ {
+      "tagKey" : "__placement",
+      "tagValues" : [ "TAP_NODES" ]
+    } ],
+    "globalNodeId" : "3e8af319-d483-8af3-9fd48-e8af319fd48",
+    "ubootVersion" : "2.0.2",
+    "serialNumber" : "M00D1",
+    "configRefreshStatistics" : {
+      "totalAttempts" : 36268,
+      "successfulAttempts" : 11170,
+      "failureAttempts" : 25098,
+      "lastAttemptTime" : "2023-06-01T14:30:37Z",
+      "lastSuccessfulAttemptTime" : "2023-05-08T17:30:39Z",
+      "lastFailureAttemptTime" : "2023-06-01T14:30:37Z"
+    },
+    "statsCollectionCounters" : {
+      "totalAttempts" : 36266,
+      "successfulAttempts" : 11169,
+      "failureAttempts" : 18209,
+      "lastAttemptTime" : "2023-05-08T17:31:05Z",
+      "lastSuccessfulAttemptTime" : "2023-05-08T17:26:05Z",
+      "lastFailureAttemptTime" : "2023-05-08T17:31:05Z",
+      "skipAttempts" : 6888,
+      "lastSkipAttemptTime" : "2023-06-01T14:26:17Z"
+    },
+    "trapCounters" : {
+      "totalBackOffCounterDueToNodeUnreachable" : 75
+    },
+    "behindNat" : false,
+    "configSaveCounters" : {
+      "totalAttempts" : 3436,
+      "successfulAttempts" : 2,
+      "failureAttempts" : 3434,
+      "lastAttemptTime" : "2023-06-01T14:23:07Z",
+      "lastSuccessfulAttemptTime" : "2023-03-15T20:33:07Z",
+      "lastFailureAttemptTime" : "2023-06-01T14:23:07Z"
+    },
+    "suppressed" : false,
+    "alarmCount" : 3
+  }, {
+    "deviceId" : "10.61.110.66",
+    "deviceIp" : "10.61.110.66",
+    "topoNodeId" : "a3e8f596475876fadf3cb3f111f45bf9",
+    "hostname" : "RL-TA25-2",
+    "family" : "H",
+    "model" : "TA25",
+    "boxId" : "25",
+    "swVersion" : "6.0.00",
+    "licensed" : true,
+    "clusterMode" : "Standalone",
+    "clusterModeAlias" : "Standalone",
+    "clusterId" : "10.61.110.66",
+    "masterPref" : 1,
+    "leaderPref" : 1,
+    "deviceIps" : [ "10.61.110.66" ],
+    "discOutcome" : "connFailed",
+    "failureDesc" : "Operation cannot be performed because Device's rootCA's certificate isn't added to the trustStore",
+    "healthState" : "red",
+    "healthStateReasons" : [ {
+      "severity" : "red",
+      "message" : "Operation cannot be performed because Device's rootCA's certificate isn't added to the trustStore"
+    } ],
+    "operStatus" : "operational",
+    "tags" : [ {
+      "tagKey" : "__placement",
+      "tagValues" : [ "CORE_NODES" ]
+    } ],
+    "globalNodeId" : "283e6151-d412-3e61-1fd41-83e6151fd41",
+    "ubootVersion" : "2.0.2",
+    "serialNumber" : "M00BC",
+    "configRefreshStatistics" : {
+      "totalAttempts" : 29884,
+      "successfulAttempts" : 23007,
+      "failureAttempts" : 6877,
+      "lastAttemptTime" : "2023-06-01T14:30:37Z",
+      "lastSuccessfulAttemptTime" : "2023-05-08T17:30:39Z",
+      "lastFailureAttemptTime" : "2023-06-01T14:30:37Z"
+    },
+    "statsCollectionCounters" : {
+      "totalAttempts" : 29882,
+      "successfulAttempts" : 23005,
+      "failureAttempts" : 1,
+      "lastAttemptTime" : "2023-05-08T17:31:05Z",
+      "lastSuccessfulAttemptTime" : "2023-05-08T17:26:05Z",
+      "lastFailureAttemptTime" : "2023-05-08T17:31:05Z",
+      "skipAttempts" : 6876,
+      "lastSkipAttemptTime" : "2023-06-01T14:26:17Z"
+    },
+    "trapCounters" : {
+      "totalBackOffCounterDueToNodeUnreachable" : 92
+    },
+    "behindNat" : false,
+    "configSaveCounters" : {
+      "totalAttempts" : 3434,
+      "failureAttempts" : 3434,
+      "lastAttemptTime" : "2023-06-01T14:23:07Z",
+      "lastFailureAttemptTime" : "2023-06-01T14:23:07Z"
+    },
+    "suppressed" : false,
+    "alarmCount" : 4
+  } ]
+}

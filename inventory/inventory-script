@@ -1,12 +1,12 @@
 {
     "dyngroup":{
-        
+        hosts:{
             "cloud1.cloud.example.com":{
                 "ip": "10.61.110.177"
             },
             "cloud2.cloud.example.com":{
                 "ip": "10.61.110.177"
             }
-        
+        }
     }
 }

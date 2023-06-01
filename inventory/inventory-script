@@ -1,6 +1,6 @@
 {
     "dyngroup":{
-        "hosts":[
+        [
             "cloud1.cloud.example.com",
             "cloud2.cloud.example.com"
         ],

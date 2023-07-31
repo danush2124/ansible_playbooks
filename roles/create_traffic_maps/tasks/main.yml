@@ -12,7 +12,7 @@
     body: {alias: "{{ map_alias }}", type: "{{ map_type }}" , enable: "{{ map_state | default(true) }}", comment: "{{ map_comment }}", subType: "{{ map_sub_type }}",
            srcPorts: "{{ map_src_port_list }}", dstPorts: "{{ map_dst_port_list }}", rules: "{{ map_rules }}", clusterId: "{{ cluster_id }}"}
     body_format: json
-    status_code: 201,200
+    status_code: 201,200,409
   register: output
 - debug:
     msg: "Connection successfully deployed"

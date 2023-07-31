@@ -3,12 +3,13 @@
   gather_facts: false 
   vars_files:
     - node_add.yml
-  - name: Loop over role
-    include_role: 
-      name: add_node_to_fm
-    vars:
-      node_ip: "{{ item.node_ip }}"
-      node_username: "{{ item.node_username }}"
-      node_password: "{{ item.node_password }}"
-    with_items: "{{ nodes }}"
+  tasks:  
+    - name: Loop over role
+      include_role: 
+        name: add_node_to_fm
+      vars:
+        node_ip: "{{ item.node_ip }}"
+        node_username: "{{ item.node_username }}"
+        node_password: "{{ item.node_password }}"
+      with_items: "{{ nodes }}"
     

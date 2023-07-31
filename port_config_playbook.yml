@@ -1,0 +1,22 @@
+- hosts: localhost
+  connection: local
+  gather_facts: false 
+  vars_files:
+    - port_config_vars.yml
+  tasks:  
+    - name: Loop over role
+      include_role: 
+        name: port_config
+      vars:
+        port_id: "{{ item.port_id }}"
+        cluster_id: "{{ item.cluster_id }}"
+        port_type: "{{ item.port_type }}"
+        admin_status: "{{ item.admin_status }}"
+        port_alias: "{{ item.port_alias }}"
+        port_config_speed: "{{ item.port_config_speed }}"
+        port_duplex: "{{ item.port_duplex }}"
+        port_autonegotiation: "{{ item.port_autonegotiation }}"
+        port_force_linkup: "{{ item.port_force_linkup }}"
+        port_mtu: "{{ item.port_mtu }}"
+        port_breakout_mode: "{{ item.port_breakout_mode }}"
+      with_items: "{{ ports }}"        

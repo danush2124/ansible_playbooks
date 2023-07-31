@@ -5,5 +5,5 @@
     - node_add.yml
   include_role: 
     name: add_node_to_fm
-  with_items: {{ nodes }}
+  with_items: "{{ nodes }}"
     

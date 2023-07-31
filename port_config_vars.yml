@@ -5,9 +5,19 @@ ports:
    admin_status: up
    port_alias: test1
    port_config_speed: 10G
+   port_duplex: full
+   port_autonegotiation: false
+   port_force_linkup: false
+   port_mtu: 9400
+   port_breakout_mode: none
  - port_id: 28/1/x2
    cluster_id: 10.61.110.69
    port_type: tool
    admin_status: up
    port_alias: test2
    port_config_speed: 10G
+   port_duplex: full
+   port_autonegotiation: false
+   port_force_linkup: false
+   port_mtu: 9400
+   port_breakout_mode: none

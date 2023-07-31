@@ -1,1 +1,13 @@
-
+ports:
+ - port_id: 
+   cluster_id: 
+   port_type: 
+   admin_status: 
+   port_alias: 
+   port_config_speed: 
+ - port_id: 
+   cluster_id: 
+   port_type: 
+   admin_status: 
+   port_alias: 
+   port_config_speed: 

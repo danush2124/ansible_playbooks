@@ -1,13 +1,13 @@
 ports:
- - port_id: 
-   cluster_id: 
-   port_type: 
-   admin_status: 
-   port_alias: 
-   port_config_speed: 
- - port_id: 
-   cluster_id: 
-   port_type: 
-   admin_status: 
-   port_alias: 
-   port_config_speed: 
+ - port_id: 28/1/x1
+   cluster_id: 10.61.110.69
+   port_type: tool
+   admin_status: up
+   port_alias: test1
+   port_config_speed: 10G
+ - port_id: 28/1/x2
+   cluster_id: 10.61.110.69
+   port_type: tool
+   admin_status: up
+   port_alias: test2
+   port_config_speed: 10G

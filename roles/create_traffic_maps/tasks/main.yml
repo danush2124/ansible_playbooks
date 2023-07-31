@@ -14,3 +14,9 @@
     body_format: json
     status_code: 201,200
   register: output
+- debug:
+    msg: "Connection successfully deployed"
+  when:  output.status in [200,201]
+- debug:
+    msg: "Connection with the same alias exists, creation failed"
+  when:  output.status in [409]

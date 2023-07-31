@@ -2,7 +2,7 @@ gigamon_nodes:
   hosts:
     map1:
       cluster_id: xx.yy.xx.cc
-      map_alias: 17/1/c3
+      map_alias: test_map
       map_type: map_type
       map_ sub_type: map_sub_type
       map_src_port_list: "test_port"

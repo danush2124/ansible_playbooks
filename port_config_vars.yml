@@ -4,7 +4,7 @@ ports:
    port_type: tool
    admin_status: up
    port_alias: test1
-   port_config_speed: 10G
+   port_config_speed: 40G
    port_duplex: full
    port_autonegotiation: false
    port_force_linkup: false
@@ -15,7 +15,7 @@ ports:
    port_type: tool
    admin_status: up
    port_alias: test2
-   port_config_speed: 10G
+   port_config_speed: 40G
    port_duplex: full
    port_autonegotiation: false
    port_force_linkup: false

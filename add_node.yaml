@@ -1,5 +1,9 @@
-- hosts: all
+- hosts: localhost
   connection: local
-  gather_facts: false  
-  roles: 
-    - add_node_to_fm
+  gather_facts: false 
+  vars_files:
+    - node_add.yml
+  - include_roles: 
+      name: add_node_to_fm
+    with_items: {{ nodes }}
+    

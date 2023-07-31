@@ -1,5 +1,5 @@
 ports:
- - port_id: 28/1/x1
+ - port_id: 28/1/q1
    cluster_id: 10.61.110.69
    port_type: tool
    admin_status: up
@@ -10,7 +10,7 @@ ports:
    port_force_linkup: false
    port_mtu: 9400
    port_breakout_mode: none
- - port_id: 28/1/x2
+ - port_id: 28/1/q2
    cluster_id: 10.61.110.69
    port_type: tool
    admin_status: up

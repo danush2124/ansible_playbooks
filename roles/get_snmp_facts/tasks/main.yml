@@ -1,0 +1,17 @@
+---
+# tasks file for get_snmp_facts
+- name: Get SNMP configs for Cluster
+  uri:
+    url: https://{{fm_ip}}/api/v1.3/system/snmp?clusterId={{ cluster_id }}
+    method: GET
+    user: "{{ fm_username }}"
+    password: "{{ fm_password }}"
+    force_basic_auth: yes
+    validate_certs: False
+    return_content: yes
+    timeout: 30
+    body_format: json
+    status_code: 201,200,204
+  register: snmp_config
+- debug:
+    var: snmp_config.json

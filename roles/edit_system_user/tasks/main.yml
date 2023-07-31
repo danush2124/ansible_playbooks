@@ -1,0 +1,16 @@
+---
+# tasks file for edit_system_user
+- name: Edit system user
+  uri:
+    url: https://{{fm_ip}}/api/v1.3/system/localUsers/{{ username }}?clusterId={{ cluster_id }}
+    method: Put
+    user: "{{ fm_username }}"
+    password: "{{ fm_password }}"
+    force_basic_auth: yes
+    validate_certs: False
+    return_content: yes
+    timeout: 30
+    body: {username: "{{ username }}", userPwd: "{{ device_password }}" , enabled: "{{ enable_status| default(true) }}", currentPassword: "{{ currentPassword }}",
+          capability: "{{ capability }}", fullName: "{{ fullName }}", "roles": [ "{{ role }}" ], accountStatus: "{{ accountStatus }}" }
+    body_format: json
+    status_code: 201,200

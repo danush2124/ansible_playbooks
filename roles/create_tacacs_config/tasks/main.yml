@@ -1,0 +1,17 @@
+---
+# tasks file for create_tacacs_config
+- name: Create TACACS server configs
+  uri:
+    url: https://{{fm_ip}}/api/v1.3/system/tacacsServers
+    method: Patch
+    user: "{{ fm_username }}"
+    password: "{{ fm_password }}"
+    force_basic_auth: yes
+    validate_certs: False
+    return_content: yes
+    timeout: 30
+    body: {serverAddress:"{{ tacacs_server_address }}",port: 49,
+          secretKey:"{{ tacacs_server_secret_key }}" ,authType: "ascii",
+          enabled: true,timeout: 60, retries: 5,}
+    status_code: 201,200
+  register: output

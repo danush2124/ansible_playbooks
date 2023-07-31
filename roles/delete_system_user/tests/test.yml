@@ -1,0 +1,16 @@
+---
+- hosts: all
+  connection: local
+  gather_facts: false
+  vars_prompt:
+    - name: fm_ip
+      prompt: "Enter FM IP"
+      private: false
+    - name: fm_username
+      prompt: "Enter FM Username"
+      private: false
+    - name: fm_password
+      prompt: "Enter FM password"
+      private: true   
+  roles:
+    - delete_system_user

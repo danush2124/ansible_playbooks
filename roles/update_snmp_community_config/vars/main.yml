@@ -1,0 +1,4 @@
+---
+# vars file for update_snmp_community_config
+snmp_community_strings:
+- abc

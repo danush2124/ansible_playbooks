@@ -1,0 +1,6 @@
+gigamon_nodes:
+  hosts:
+    node1:
+      cluster_id: xx.yy.xx.cc
+    node2:
+      cluster_id: xx.gg.dd.ee

@@ -1,0 +1,5 @@
+---
+# vars file for redefine_snmp_community_config/
+snmp_community_strings:
+- abc
+

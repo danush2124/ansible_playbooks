@@ -1,0 +1,13 @@
+gigamon_nodes:
+  hosts:
+    user1:
+      cluster_id: 
+      username: 
+      device_password: 
+      enable_status: 
+      currentPassword: 
+      capability: 
+      fullName: 
+      role:                           #Default, monitor or admin
+      accountStatus:                  #"passwordSet" or "passwordDisabled"
+

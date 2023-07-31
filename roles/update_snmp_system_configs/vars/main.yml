@@ -1,0 +1,6 @@
+---
+# vars file for update_snmp_system_configs
+snmp_system_description:
+snmp_system_contact:
+snmp_system_name:
+snmp_system_location:

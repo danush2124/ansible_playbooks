@@ -1,0 +1,5 @@
+hosts:
+  node1:
+    cluster_id: xx.yy.vv.bb
+  node2:
+    cluster_id: jj.kk.ll.vv

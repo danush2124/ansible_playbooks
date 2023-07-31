@@ -1,0 +1,4 @@
+---
+# vars file for create_tacacs_config
+tacacs_server_address:
+tacacs_server_secret_key:

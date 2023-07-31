@@ -1,0 +1,9 @@
+gigamon_nodes:
+  hosts:
+    user1:
+      cluster_id: 
+      username: 
+    user2:
+      cluster_id: 
+      username:       
+

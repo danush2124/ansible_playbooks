@@ -1,0 +1,17 @@
+---
+# tasks file for redefine_snmp_system_configs
+  uri:
+    url: https://{{fm_ip}}/api/v1.3/system/snmp/system?clusterId={{ cluster_id }}
+    method: Put
+    user: "{{ fm_username }}"
+    password: "{{ fm_password }}"
+    force_basic_auth: yes
+    validate_certs: False
+    return_content: yes
+    timeout: 30
+    body: {enabled: true,port: 161,sysDescr: "{{ snmp_system_description }}",
+           sysContact: "{{ snmp_system_contact }}",sysName: "{{ snmp_system_name }}",
+           sysLocation: "{{ snmp_system_location }}"}
+    body_format: json
+    status_code: 201,200
+  register: output

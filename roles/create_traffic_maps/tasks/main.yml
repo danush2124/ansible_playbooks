@@ -15,8 +15,8 @@
     status_code: 201,200,409
   register: output
 - debug:
-    msg: "Connection successfully deployed"
+    msg: "Traffic Map successfully deployed"
   when:  output.status in [200,201]
 - debug:
-    msg: "Connection with the same alias exists, creation failed"
+    msg: "Traffic map with same alias exists, creation failed"
   when:  output.status in [409]

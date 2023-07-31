@@ -9,7 +9,7 @@ traffic_maps:
    map_dst_port_list: [28/1/q1]
    map_rules: {}
  - cluster_id: 10.61.110.69
-   map_alias: test_ma2
+   map_alias: test_map2
    map_state: true
    map_type: regular
    map_comment: "test map creation"

@@ -5,6 +5,6 @@ traffic_maps:
    map_type: regular
    map_comment: "test map creation"
    map_sub_type: byRule
-   map_src_port_list: [28_1_x1]
-   map_dst_port_list: [28_1_x2]
+   map_src_port_list: [28/1/x1]
+   map_dst_port_list: [28/1/x2]
    map_rules: {}

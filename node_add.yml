@@ -2,3 +2,6 @@ nodes:
  - node_ip: 10.61.110.64
    node_username: admin
    node_password: support123A!
+ - node_ip: 10.61.110.69
+   node_username: admin
+   node_password: support123A!  

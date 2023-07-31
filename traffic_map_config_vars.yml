@@ -1,0 +1,10 @@
+traffic_maps:
+ - cluster_id: 10.61.110.69
+   map_alias: test_map1
+   map_state: true
+   map_type: regular
+   map_comment: "test map creation"
+   map_sub_type: byRule
+   map_src_port_list: [28_1_x1]
+   map_dst_port_list: [28_1_x2]
+   map_rules: {}

@@ -1,1 +1,20 @@
-
+- hosts: localhost
+  connection: local
+  gather_facts: false 
+  vars_files:
+    - traffic_map_config_vars.yml
+  tasks:  
+    - name: Loop over role
+      include_role: 
+        name: create_traffic_maps
+      vars:
+        cluster_id: "{{ item.cluster_id }}"
+        map_alias: "{{ item.map_alias }}"
+        map_state: "{{ item.map_state }}"
+        map_type: "{{ item.map_type }}"
+        map_comment: "{{ item.map_comment }}"
+        map_sub_type: "{{ item.map_sub_type }}"
+        map_src_port_list: "{{ item.map_src_port_list }}"
+        map_dst_port_list: "{{ item.map_dst_port_list }}"
+        map_rules: "{{ item.map_rules }}"
+      with_items: "{{ traffic_maps }}" 

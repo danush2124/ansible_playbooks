@@ -1,0 +1,16 @@
+gigamon_nodes:
+  hosts:
+    port1:
+      cluster_id: xx.yy.xx.cc
+      port_id: 17/1/c3
+      port_type: tool
+      admin_status: up
+      port_alias: "test_port"
+      port_config_speed: 100G
+    port2:
+      cluster_id: aa.cc.vv.rr
+      port_id: 17/1/c4
+      port_type: tool
+      admin_status: up
+      port_alias: "test_port1"
+      port_config_speed: 100G

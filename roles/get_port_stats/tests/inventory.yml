@@ -1,0 +1,8 @@
+gigamon_nodes:
+  hosts:
+    port1:
+      cluster_id: xx.yy.uu.ii
+      port_id: 17/1/c3
+    port2:
+      cluster_id: pp.ll.mm.nn
+      port_id: 17/1/c4

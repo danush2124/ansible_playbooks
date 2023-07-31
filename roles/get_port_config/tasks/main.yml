@@ -1,0 +1,20 @@
+---
+# tasks file for get_port_config
+- name: format portID string
+  set_fact:
+    portId: "{{ port_id  | replace('/','_') }}"
+- name: Get port configs
+  uri:
+    url: https://{{fm_ip}}/api/v1.3/inventory/ports/{{ portId }}?clusterId={{ cluster_id }}
+    method: GET
+    user: "{{ fm_username }}"
+    password: "{{ fm_password }}"
+    force_basic_auth: yes
+    validate_certs: False
+    return_content: yes
+    timeout: 30
+    body_format: json
+    status_code: 201,200,204
+  register: port_config    
+- debug:
+    var: port_config.json 

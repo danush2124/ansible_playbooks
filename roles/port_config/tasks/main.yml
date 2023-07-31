@@ -1,0 +1,23 @@
+---
+# tasks file for port_config
+- name: format portID string
+  set_fact:
+    portId: "{{ port_id  | replace('/','_') }}"
+    
+    
+- name: Update port configs
+  uri:
+    url: https://{{fm_ip}}/api/v1.3/inventory/ports/{{ portId }}?clusterId={{ cluster_id }}
+    method: Patch
+    user: "{{ fm_username }}"
+    password: "{{ fm_password }}"
+    force_basic_auth: yes
+    validate_certs: False
+    return_content: yes
+    timeout: 30
+    body: {portId: "{{ port_id }}", portType: "{{ port_type }}" , adminStatus: "{{ admin_status }}", alias: "{{ port_alias }}", configSpeed: "{{ port_config_speed }}",
+           duplex: "{{ port_duplex | default('full') }}",autoNeg: "{{ port_autonegotiation | default(false) }}",forceLinkUp: "{{ port_force_linkup | default(false) }}",
+           mtu: "{{ port_mtu | default(9400) }}", "breakoutMode": "{{ port_breakout_mode | default('none') }}" }
+    body_format: json
+    status_code: 201,200
+  register: output

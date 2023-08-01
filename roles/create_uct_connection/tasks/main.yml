@@ -1,0 +1,31 @@
+---
+# tasks file for create_uct_connection
+- name: Create Connection 
+  uri:
+    url: https://{{FM_IP}}/api/v1.3/cloud/ucts/connections
+    method: Post
+    user: "{{ fm_username }}"
+    password: "{{ fm_password }}"
+    force_basic_auth: yes
+    validate_certs: False
+    return_content: yes
+    timeout: 30
+    body: {
+            "alias": "{{ connection_alias }}",
+            "clusterName": "{{ cluster_name }}",
+            "url": "{{ k8s_cluster_endpoint }}",
+            "monitoringDomainId": "{{ md_alias_id_dict[monitoring_domain_alias] }}",
+            "inventoryCollector": "uctController"
+          }
+    body_format: json
+    status_code: 201,200,409
+  register: output
+- debug:
+    msg: "Connection successfully deployed"
+  when:  output.status in [200,201]
+- debug:
+    msg: "Connection with the same alias exists, creation failed"
+  when:  output.status in [409]
+- debug:
+    msg: "Connection deployment failed"
+  when:  output.status not in [200,201,409] 

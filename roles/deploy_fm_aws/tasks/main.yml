@@ -1,0 +1,47 @@
+---
+# tasks file for deploy_fm_aws
+- name: Create FM instances
+  amazon.aws.ec2_instance:
+    name: "{{ instance_name }}"
+    region: "{{ aws_region }}"
+    instance_type: "{{ instance_type }}"
+    image_id: "{{ ami_id }}"
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    security_group: "{{ security_group }}"
+    key_name: "{{ key_name_for_access }}"
+    iam_instance_profile: "{{ iam_role_name }}"
+    vpc_subnet_id: "{{ vpc_subnet_id }}    
+    wait: yes
+  register: fm_instance
+
+- name: Gather facts
+  ec2_instance_info:
+    aws_access_key: "{{ec2_access_key}}"
+    aws_secret_key: "{{ec2_secret_key}}"
+    region: "{{ region }}"
+  register: result
+	
+- name: Extract IP
+  set_fact:
+    instance_ip:  "{{ fm_instance.instances[0].public_ip }}"
+
+
+- name: Extract FM Instance ID
+  set_fact:
+    instance_id:  "{{ fm_instance.instances[0].instance_id }}"
+ 
+- name: associate EIP to FM
+  amazon.aws.ec2_eip:
+    device_id: instance_id  
+	ip: instance_ip
+	
+- name: Add Volume
+  amazon.aws.ec2_vol:
+    instance: "{{ instance_id }}"
+    volume_size: {{ ebs_volume_size }}
+    region: "{{ aws_region }}"
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    volume_type: gp2
+    device_name: /dev/sdb

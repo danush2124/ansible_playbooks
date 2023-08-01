@@ -1,0 +1,16 @@
+gigamon_infra:
+  hosts:
+    vseries_node1:
+      vseries_node_name_prefix:
+      vseries_node_name_suffix:
+      connection_id:
+      connection_alias:
+      vseries_image_id:
+      vseries_image_name:
+      aws_instance_type:
+      aws_kms_key:
+      ssh_key_pair_name:
+      ssl_certificate_enable:
+      ssl_certificate_name:
+      mgmt_subnet_elastic_ip_list:
+      data_subnet_elastic_ip_list:

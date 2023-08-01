@@ -1,0 +1,10 @@
+---
+- hosts: gigamon_infra
+  connection: local
+  gather_facts: false
+  vars_prompt:
+    - name: fm_admin_password
+      prompt: "Enter FM admin password"
+      private: true
+  roles:
+    - deploy_fm_vmware

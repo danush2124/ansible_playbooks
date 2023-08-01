@@ -1,0 +1,39 @@
+---
+# tasks file for create_uct_monitoring_session
+
+- set_stats:
+    data:
+      monitoring_domain_id: "{{ md_alias_id_dict[monitoring_domain_alias] }}"
+
+- set_stats:
+    data:
+      connection_id: "{{ connection_dict[connection_alias] }}"
+
+- name: Create Pod_Traffic_Policy_YAML
+  template:
+    src: pod_traffic_policy.j2
+    dest: pod_traffic_policy.yaml
+
+- name: Create Traffic Policy
+  uri:
+    url: https://{{FM_IP}}/api/v1.3/cloud/ucts/trafficPolicies
+    method: Post
+    user: "{{ fm_username }}"
+    password: "{{ fm_password }}"
+    force_basic_auth: yes
+    validate_certs: False
+    return_content: yes
+    timeout: 30
+    body: {{ pod_traffic_policy.yaml | to_json }}
+    body_format: json
+    status_code: 201,200,409
+  register: output
+- debug:
+    msg: "Traffic policy successfully deployed"
+  when:  output.status in [200,201]
+- debug:
+    msg: "Traffic policy exists, creation failed"
+  when:  output.status in [409]
+- debug:
+    msg: "Traffic policy deployment failed"
+  when:  output.status not in [200,201,409] 

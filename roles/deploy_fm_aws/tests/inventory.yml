@@ -1,0 +1,13 @@
+gigamon_infra:
+  hosts:
+    fm1:
+      instance_name:
+      aws_region:
+      ami_id:
+      aws_access_key:
+      aws_secret_key: 
+      security_group:
+      key_name_for_access:
+      iam_role_name:
+      vpc_subnet_id: 
+      ebs_volume_size:

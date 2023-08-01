@@ -1,0 +1,14 @@
+gigamon_infra:
+  hosts:
+    monitoring_domain_alias:
+    connection_alias:
+    cluster_name:
+    policy_name :              
+    tunnel_type :
+    tunnel_name :
+    tunnel_key : 
+    tunnel_ip :
+    tunnel_mtu :
+    operator : contains
+    source_selector_value :
+    source_selector_alias :

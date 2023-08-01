@@ -1,0 +1,53 @@
+{
+      "name": {{ policy_name }},
+      "monitoringDomainId": {{ monitoring_domain_id }},
+      "monitoringDomainAlias": {{ monitoring_domain_alias }},
+      "connections": [
+        {
+          "id": {{ connection_id }},
+          "alias": {{ connection_alias }}
+        }
+      ],
+      "containerSourceSelectors": [
+        {
+          "name": {{ source_selector_alias }},
+          "inclusion": [
+            [
+              {
+                "property": "podname",
+                "operator": {{ operator }},
+                "value": {{ source_selector_value }}
+              }
+            ]
+          ],
+          "exclusion": []
+        }
+      ],
+      "tunnels": [
+        {
+          "type": {{ tunnel_type }},
+          "name": {{ tunnel_name }},
+          "remoteIpAddr": {{ tunnel_ip }},
+          "key": {{ tunnel_key }},
+          "mtu": {{ tunnel_mtu }}
+        }
+      ],
+      "rules": [
+        {
+          "name": "ingress-passall",
+          "action": "pass",
+          "direction": "ingress",
+          "priority": 1,
+          "filters": [],
+          "destinationName": {{ tunnel_name }}
+        },
+        {
+          "name": "egress-passall",
+          "action": "pass",
+          "direction": "egress",
+          "priority": 1,
+          "filters": [],
+          "destinationName": {{ tunnel_name }}
+        }
+      ]
+    }

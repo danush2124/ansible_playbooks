@@ -1,0 +1,141 @@
+---
+# tasks file for deploy_vseries_vmware
+- name: Get Connection ID
+  set_stats:
+    data:
+      vmware_connection_id:  "{{ connection_dict[connection_alias] }}"
+- name: Get VMware host facts
+  uri:
+    url: https://{{ input.fm_ip }}/api/v1.3/cloud/vmware/fabricDeployment/hosts?connId={{ vmware_connection_id }}
+    method: GET
+    user: "{{ fm_username }}"
+    password: "{{ fm_password }}"
+    force_basic_auth: yes
+    validate_certs: False
+    return_content: yes
+    timeout: 30
+    body_format: json
+    status_code: 201,200
+  register: output
+- name: Vcenter Host Output
+  set_stats:
+    data:
+          vcenter_host_ip: "{{ input.vcenter_host_ip }}"
+          vcenter_host_name: "{{ item.name }}"
+          vcenter_host_ref:  "{{ item.ref  }}"
+          vcenter_host_datastore_ref: "{{ item.datastoreRefs[0] }}"
+          vcenter_host_datacenter_name: "{{ item.datacenterName }}"
+          vcenter_host_datacenter_ref: "{{ item.datacenterRef }}"          
+  with_items: "{{ output.json.hosts }}"
+  when: item.name == "{{ vcenter_host_ip }}"
+
+- name: Get VMware datastores facts
+  uri:
+    url: https://{{ input.fm_ip }}/api/v1.3/cloud/vmware/fabricDeployment/datastores?connId={{ vmware_connection_id }}
+    method: GET
+    user: "{{ fm_username }}"
+    password: "{{ fm_password }}"
+    force_basic_auth: yes
+    validate_certs: False
+    return_content: yes
+    timeout: 30
+    body_format: json
+    status_code: 201,200
+  register: output
+- name: Vcenter Network Output
+  set_stats:
+    data:
+          vcenter_host_datastore_name:  "{{ item.name  }}"
+  with_items: "{{ output.json.datastores }}"
+  when: item.ref == "{{ vcenter_host_datastore_ref }}"
+
+- name: Get VMware network facts
+  uri:
+    url: https://{{ input.fm_ip }}/api/v1.3/cloud/vmware/fabricDeployment/networks?connId={{ vmware_connection_id }}
+    method: GET
+    user: "{{ fm_username }}"
+    password: "{{ fm_password }}"
+    force_basic_auth: yes
+    validate_certs: False
+    return_content: yes
+    timeout: 30
+    body_format: json
+    status_code: 201,200
+  register: output
+- name: Vcenter Set Mgmt Output
+  set_stats:
+    data:
+      vcenter_host_int_mgmt_ref:  "{{ item.ref  }}"
+      vcenter_host_int_mgmt_name: "{{ vcenter_host_int_mgmt_name }}"
+  with_items: "{{ output.json.networks }}"
+  when: item.name == "{{ vcenter_host_int_mgmt_name }}"
+- name: Vcenter Set Tunnel Output
+  set_stats:
+    data:
+      vcenter_host_int_tunnel_ref:  "{{ item.ref  }}"
+      vcenter_host_int_tunnel_name: "{{  vcenter_host_int_tunnel_name }}"
+  with_items: "{{ output.json.networks }}"
+  when: item.name == "{{  vcenter_host_int_tunnel_name }}"
+- name: Create VSeries2.0 node
+  uri:
+    url: https://{{ input.fm_ip }}/api/v1.3/cloud/vmware/fabricDeployment/vseriesNodes
+    method: POST
+    user: "{{ fm_username }}"
+    password: "{{ fm_password }}"
+    force_basic_auth: yes
+    validate_certs: False
+    return_content: yes
+    timeout: 30
+    body: {
+          "connId": "{{ vmware_connection_id }}",
+          "dcRef": {
+            "vcKey": "{{ vcenter_host_datacenter_ref }}",
+            "name": "{{ vcenter_host_datacenter_name }}"
+          },
+          "hostSpecs": [
+            {
+              "hostRef": {
+                "vcKey": "{{ vcenter_host_ref }}",
+                "name": "{{ vcenter_host_name }}"
+              },
+              "vmNodeName": "{{ input.vseries_node_name }}",
+              "diskFormat": "thin",
+              "datastoreRef": {
+                "vcKey": "{{ vcenter_host_datastore_ref }}",
+                "name": "{{ vcenter_host_datastore_name}}"
+              },
+
+              "intfMgmt": {
+                "intfRef": {
+                  "vcKey": "{{ vcenter_host_int_mgmt_ref }}",
+                  "name": "{{ vcenter_host_int_mgmt_name }}",
+                },
+                "ipType": "DHCP
+                "ipAddress": "string",
+                "ipAddressMask": "string",
+                "gatewayIp": "string"
+              },
+              "intfTunnel": {
+                "intfRef": {
+                  "vcKey": "{{ vcenter_host_int_tunnel_ref }}",
+                  "name": "{{ vcenter_host_int_tunnel_name }}"
+                },
+                "ipType": "DHCP",
+                "ipAddress": "string",
+                "ipAddressMask": "string",
+                "gatewayIp": "string",
+                "mtu": 1500,
+                "cidr": 32
+              },
+              "vmFolder": "/",
+              "adminPassword": "{{ vseries_admin_password }}"
+            }
+          ],
+          "imageName": "{{ input.vseries_image }}",
+          "formFactor": "{{ input.vseries_formfactor }}"
+        }
+    body_format: json
+    status_code: 201,200,202
+  register: output
+- name: display status
+  debug: msg="{{ output }}"

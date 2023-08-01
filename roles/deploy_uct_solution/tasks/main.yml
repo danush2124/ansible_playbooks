@@ -1,0 +1,64 @@
+---
+# tasks file for deploy_uct_solution
+- name: Create UCT Namespace
+  kubernetes.core.k8s:
+    name: uct
+    api_version: v1
+    kind: Namespace
+    state: present
+
+- name: Deploy NGINX
+  kubernetes.core.k8s:
+    state: present
+    namespace: uct
+    src: nginx.yaml
+    merge_type: merge
+   when: EXTERNAL_IP == ""
+
+- pause:
+    seconds: 30
+
+- name: Check NGINX Service
+  kubernetes.core.k8s_info:
+    api_version: v1
+    kind: service
+    name: nginx-ingress-controller
+    namespace: uct
+  register: loadbalancer_service
+
+- set_fact:
+    external_ip_dict: "{{ item.status.loadBalancer.ingress }}"
+  with_items: "{{ loadbalancer_service.resources }}"
+  when: item.status and EXTERNAL_IP == ""
+
+- set_fact:
+    EXTERNAL_IP: "{{ item.ip }}"
+  with_items: "{{ external_ip_dict }}"
+  when: item.ip and EXTERNAL_IP == ""
+
+- debug:
+    var: EXTERNAL_IP
+
+- name: Create UCT_CONTROLLER_INSTALL_YAML
+  template:
+    src: uct-controller.j2
+    dest: uct-controller.yaml
+
+- name: Deploy UCT Controller
+  kubernetes.core.k8s:
+    state: present
+    namespace: uct
+    src: uct-controller.yaml
+    merge_type: merge
+
+- name: Create UCT_TAP_INSTALL_YAML
+  template:
+    src: uct-tap.j2
+    dest: uct-tap.yaml
+
+- name: Deploy UCT TAP
+  kubernetes.core.k8s:
+    state: present
+    namespace: uct
+    src: uct-tap.yaml
+    merge_type: merge

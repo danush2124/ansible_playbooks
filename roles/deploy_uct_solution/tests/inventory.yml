@@ -1,0 +1,10 @@
+gigamon_infra:
+  hosts:
+    uct_1:
+      IMAGE_VERSION: "6.3.00-390267"
+      EXTERNAL_IP: ""
+      FM_IP: 40.71.34.112
+      K8S_CLUSTER_ENDPOINT: https://uct-test-cluster-6-3-ai88tjen.hcp.westus2.azmk8s.io:443
+      monitoring_domain_alias: Test1
+      connection_alias: Azure Test
+      cluster_name: K8s_Test

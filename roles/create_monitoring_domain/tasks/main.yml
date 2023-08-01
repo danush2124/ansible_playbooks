@@ -1,0 +1,31 @@
+---
+# tasks file for create_monitoring_domain
+- name: Create Monitoring Domain
+  uri:
+    url: https://{{FM_IP}}/api/v1.3/cloud/monitoringDomains
+    method: Post
+    user: "{{ fm_username }}"
+    password: "{{ fm_password }}"
+    force_basic_auth: yes
+    validate_certs: False
+    return_content: yes
+    timeout: 30
+    body: {
+            "alias": "{{ monitoring_domain_alias }}",
+            "description": {{ description | default(Monitoring Domain) }},
+            "useLoadBalancer": false,
+            "mtu": {{ mtu | default(9100) },
+            "platform": "{{ platform }}"
+            }
+    body_format: json
+    status_code: 201,200,409
+  register: output
+  debug:
+    msg: "Monitoring Domain successfully deployed"
+  when:  output.status in [200,201]
+  debug:
+    msg: "Monitoring Domain with the same alias exists, creation failed"
+  when:  output.status in [409]
+  debug:
+    msg: "Monitoring Domain successfully deployed"
+  when:  output.status not in [200,201,409]  

@@ -1,0 +1,6 @@
+gigamon_infra:
+  hosts:
+    connection1:
+      platform:
+    connection2:
+      platform:

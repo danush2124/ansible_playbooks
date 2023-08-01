@@ -1,0 +1,17 @@
+---
+- hosts: gigamon_infra
+  connection: local
+  gather_facts: false
+  vars_prompt:
+    - name: fm_ip
+      prompt: "Enter FM IP"
+      private: false
+    - name: fm_username
+      prompt: "Enter FM Username"
+      private: false
+    - name: fm_password
+      prompt: "Enter FM password"
+      private: true
+  roles:
+    - get_monitoring_domain_facts
+    - create_vmware_connection

@@ -1,0 +1,35 @@
+---
+# tasks file for get_vseries_connection_facts
+- name: Get Connection ID
+  uri:
+	url: https://{{ fm_ip }}/api/v1.3/cloud/{{ platform }}/connections
+	method: GET
+	user: "{{ fm_username }}"
+	password: "{{ fm_password }}"
+	force_basic_auth: yes
+	validate_certs: False
+	return_content: yes
+	timeout: 30
+	body_format: json
+	status_code: 201,200
+  register: output
+
+- set_fact:
+	facts_conn_dict: "{{ facts_conn_dict|default({}) | combine ({ item.id : item.monitoringDomainId}) }}"
+  with_items: "{{ output.json.vmwareConnections }}"
+  
+- set_stats:
+	data:
+	  facts_conn_dict: "{{ facts_conn_dict|default({}) | combine ({ item.id : item.monitoringDomainId}) }}"
+  with_items: "{{ output.json.vmwareConnections }}"    
+
+- debug:
+	var: facts_conn_dict 
+- set_fact:
+        connection_dict: "{{ connection_dict|default({}) | combine ({ item.alias : item.id }) }}"
+  with_items: "{{ output.json.vmwareConnections }}"
+
+- set_stats:
+        data:
+          connection_dict: "{{ connection_dict|default({}) | combine ({ item.alias : item.id }) }}"
+  with_items: "{{ output.json.vmwareConnections }}"

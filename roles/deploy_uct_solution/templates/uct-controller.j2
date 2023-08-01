@@ -1,0 +1,169 @@
+# Copyright 2020 Gigamon Inc.
+##################################################################################################
+# UCT service
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: uct-cntlr-service
+  labels:
+    app: uct-cntlr
+    service: uct-cntlr-service
+  # change the namespace to match your namespace
+  namespace: uct
+spec:
+  ports:
+  - port: 8443
+    protocol: TCP
+    name: uct-rest
+    targetPort: 8443
+  - port: 42042
+    protocol: TCP
+    name: uct-stats
+    targetPort: 42042
+  selector:
+    app: uct-cntlr
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uct-cntlr
+  # change the namespace to match your namespace
+  namespace: uct
+  labels:
+    app: uct-cntlr
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: uct-cntlr
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: uct-cntlr
+        version: v1
+    spec:
+      # this below serviceAccountName should match with the ServiceAccount
+      # name under ClusterRoleBinding section.It is recommended to use
+      # a non default name as customers may use name of their choice.
+      # non default serviceAccountName should be created using the kubectl.
+      # kubectl create serviceaccount <non default name> -n <namespace>
+      # serviceAccountName: uct-cntlr-service
+      containers:
+      - name: uct-cntlr
+        image: 'gigamon/uct-controller:{{IMAGE_VERSION}}'
+        # Usage:
+        # /uct-cntlr
+        # <FM IP>
+        # <FM REST Svc Port>
+        # <UCT-Cntlr REST SVC Port>
+        # <mTLS Mode: 1(ON)|0(OFF))
+        # <Cert Path>
+        # <Cert file>
+        # <Pvt Key>
+        # <CA-Root>
+        command:
+          - /uct-controller
+          - {{ FM_IP }}
+          - '443'
+          - '8443'
+          - '0'
+          - "/etc/gcbcerts"
+          - "gcb-cert.pem"
+          - "gcb-pvt-key.pem"
+          - "gcb-ca-root-cert.pem"
+        #command: [/giga_setup_init]
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: "0"
+            memory: "1024Mi"
+          limits:
+            cpu: "0"
+            memory: "1024Mi"
+        ports:
+        - containerPort: 443
+        - containerPort: 42042
+        env:
+        # Service name.Shoudl match name specified in metadata section above.
+        - name: UCT_CNTLR_SERVICE_NAME
+          value: "GIGAMON_UCT_CNTLR_SERVICE"
+        # External LB balancer IP, for controller (FM) to connect to uct-cntlr
+        - name: UCT_CNTLR_EXT_IP_DNS
+          value: {{ EXTERNAL_IP }}
+        # K8S cluster end-point (typically, master nodes with default port of 6443)
+        # example: kubectl cluster-info cmd should give this value
+        - name: K8S_CLUSTER_ENDPOINT
+          value: {{ K8S_CLUSTER_ENDPOINT }}
+        # This value is upto user to specify. Will accept any value
+        - name: FM_FQDN
+          value: "www.fm.gigamon.com"
+        # Namespace of pod - gets from metadata
+        - name: UCT_CNTLR_POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        # Name of pod - gets from metadata
+        - name: UCT_CNTLR_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        #  Hex value form using 0xdd[aaaa][b][c] for:
+        #  aaaa reserved bits
+        #  b is reserved bits
+        #  c is level level with 1=fatal, 2=error, 3=info, 4=debug
+        #  dd is the log file size multiplier
+        #     dd = 0|1 - means default log file size (approx. 100,000 lines)
+        #     dd = 08 -  means  8 * default log file size (approx. 8*100,0000 lines)
+        #     dd = FF = 255 - means (255*100,000 lines)
+        #      Note: file size if not exact, but a rough approx.
+        - name: UCT_DEBUG_MODE
+          value: '0x0A000003'
+        # This value is to enable inventory collection through yaml file.
+        # true means enable, false or any other value means disable
+        - name: UCT_CNTLR_INVENTORY_COLLECTION_ENABLE
+          value: "true"
+        # We are specifying HOME dir as /pod-data to work with SCC restrictions
+        - name: HOME
+          value: "/pod-data"
+        # For No mTLS Case, Volume Mount is Optional.
+        volumeMounts:
+        - mountPath: /etc/gcbcerts
+          name: pki-path
+        - mountPath: /pod-data
+          name: shared-data
+      volumes:
+      - emptyDir: {}
+        name: shared-data
+      - emptyDir: {}
+        name: pki-path
+      imagePullSecrets:
+        - name: gig-dock-regkey
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: pods-list
+rules:
+- apiGroups: [""]
+  resources: ["pods","services", "nodes"]
+  verbs: ["get","watch","list"]
+- apiGroups: ["apps"]
+  resources: ["deployments"]
+  verbs: ["list"]
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: pods-list
+subjects:
+- kind: ServiceAccount
+  name: default
+  #change the below namespace as per the requirement
+  namespace: uct
+roleRef:
+  kind: ClusterRole
+  name: pods-list
+  apiGroup: rbac.authorization.k8s.io

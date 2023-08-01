@@ -1,0 +1,11 @@
+gigamon_infra:
+  hosts:
+    vseries_node1:
+      connection_alias:
+      vsphere_ip:
+      vcenter_host_ip:
+      vseries_node_name:
+      vseries_image:
+      vseries_formfactor:
+      vcenter_host_int_mgmt_name:
+      vcenter_host_int_tunnel_name:

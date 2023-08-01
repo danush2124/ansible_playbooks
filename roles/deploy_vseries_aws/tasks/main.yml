@@ -1,0 +1,48 @@
+---
+# tasks file for deploy_vseries_aws
+- name: Get Connection ID
+  set_stats:
+    data:
+      vmware_connection_id:  "{{ connection_dict[connection_alias] }}"
+- name: Create VSeries2.0 node
+  uri:
+    url: https://{{ input.fm_ip }}/api/v1.3/cloud/vmware/fabricDeployment/vseriesNodes
+    method: POST
+    user: "{{ fm_username }}"
+    password: "{{ fm_password }}"
+    force_basic_auth: yes
+    validate_certs: False
+    return_content: yes
+    timeout: 30
+    body: {
+           "nodeNamePrefix": “{{ vseries_node_name_prefix }}”,
+           "nodeNameSuffix": “{{ vseries_node_name_suffix }}”,
+           "connId": “{{ connection_id }}”,
+           "connAlias": “{{ connection_alias }}”,
+           "imageId": “{{ vseries_image_id }}” ,
+           "imageName": “{{ vseries_image_name }}”,
+           "instanceType": “{{ aws_instance_type }}”,
+           "ebsVolumeType": "gp2",
+           "kmsKey": “{{ aws_kms_key }}”,
+           "sshKeyPairName": “{{ ssh_key_pair_name }}”,
+           "sslCertCheckEnabled": "{{ ssl_cert_check_enable }}",
+           "sslCertificateName": “{{ ssl_certificate_name }}” ,
+           "mgmtSubnetSpec": {
+             "elasticIps": “{{ mgmt_subnet_elastic_ip_list }}”
+           },
+          "dataSubnetsSpec": [
+             {
+             "elasticIps": “{{ data_subnet_elastic_ip_list }}”,
+             "toolSubnet": false
+             }
+          ],
+          "minInstancesToLaunch": 1,
+          "maxInstancesToLaunch": 1,
+          "mtu": 9600,
+          "shared": false
+          }
+    body_format: json
+    status_code: 201,200,202
+  register: output
+- name: display status
+  debug: msg="{{ output }}"

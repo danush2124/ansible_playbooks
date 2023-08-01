@@ -1,0 +1,28 @@
+gigamon_infra:
+  hosts:
+    fm1:
+      vmware_ip:
+      vmware_username:
+      vmware_password:
+      vmware_datacenter:
+      vm_name: 
+      vmware_datastore:
+      vmware_network_name:
+      fm_ova_image_path:
+      management_ip: 
+      management_ip_netmask:
+    fm2:
+      vmware_ip:
+      vmware_username:
+      vmware_password:
+      vmware_datacenter:
+      vm_name: 
+      vmware_datastore:
+      vmware_network_name:
+      fm_ova_image_path:
+      management_ip: 
+      management_ip_netmask:
+     
+      
+       
+

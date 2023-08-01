@@ -3,4 +3,5 @@
   connection: local
   gather_facts: false
   roles:
+    - get_monitoring_domain_facts
     - create_uct_connection

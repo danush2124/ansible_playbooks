@@ -20,12 +20,12 @@
     body_format: json
     status_code: 201,200,409
   register: output
-  debug:
+- debug:
     msg: "Monitoring Domain successfully deployed"
   when:  output.status in [200,201]
-  debug:
+- debug:
     msg: "Monitoring Domain with the same alias exists, creation failed"
   when:  output.status in [409]
-  debug:
+- debug:
     msg: "Monitoring Domain successfully deployed"
   when:  output.status not in [200,201,409]  

@@ -12,9 +12,9 @@
     timeout: 30
     body: {
             "alias": "{{ monitoring_domain_alias }}",
-            "description": {{ description | default(Monitoring Domain) }},
+            "description": "{{ description | default(Monitoring Domain) }}",
             "useLoadBalancer": false,
-            "mtu": {{ mtu | default(9100) },
+            "mtu": "{{ mtu | default(9100) }}",
             "platform": "{{ platform }}"
             }
     body_format: json

@@ -2,12 +2,10 @@ gigamon_infra:
   hosts:
     monitoring_domain1:
       monitoring_domain_alias:
-      description:
       mtu:
-      platform:
+      platform:                #vmwareEsxi, aws, azure
     monitoring_domain2:
       monitoring_domain_alias:
-      description:
       mtu:
-      platform:
+      platform:                #vmwareEsxi, aws, azure
       

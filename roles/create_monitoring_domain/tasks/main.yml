@@ -2,7 +2,7 @@
 # tasks file for create_monitoring_domain
 - name: Create Monitoring Domain
   uri:
-    url: https://{{FM_IP}}/api/v1.3/cloud/monitoringDomains
+    url: https://{{fm_ip}}/api/v1.3/cloud/monitoringDomains
     method: Post
     user: "{{ fm_username }}"
     password: "{{ fm_password }}"

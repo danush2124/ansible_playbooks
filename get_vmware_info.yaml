@@ -1,7 +1,7 @@
 - hosts: localhost
   connection: local
   collections:
-   - Community.Vmware
+   - community.Vmware
   gather_facts: false 
   vars_files:
     - node_add_vars.yml

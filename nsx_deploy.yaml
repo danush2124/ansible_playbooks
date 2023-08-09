@@ -6,7 +6,7 @@
 - hosts: all
   become: yes
   collections:
-   - vmware.ansible_for_nsxt
+   - damhau.ansible_for_nsxt
   tasks:
     - name: deploy NSX Manager OVA
       nsxt_deploy_ova:

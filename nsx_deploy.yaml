@@ -10,7 +10,7 @@
   tasks:
     - name: deploy NSX Manager OVA
       nsxt_deploy_ova:
-        ovftool_path: ""
+        ovftool_path: "/usr/bin/ovftool/vmware/ovftool"
         datacenter: "{{ datacenter}}"
         datastore: "{{ datastore }}"
         portgroup: "{{ portgroup }}"

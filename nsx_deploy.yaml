@@ -20,6 +20,8 @@
         dns_server: "{{ dns_server }}"
         dns_domain: ""
         ntp_server: ""
+        ssh_enabled: True
+        allow_ssh_root_login: True        
         gateway: "{{ gateway }}"
         ip_address: "{{ mgmt_ip }}"
         netmask: "{{ netmask }}"

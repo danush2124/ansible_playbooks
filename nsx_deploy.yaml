@@ -5,6 +5,8 @@
 #
 - hosts: all
   connection: local
+  collections:
+   - damhau.ansible_for_nsxt
   tasks:
     - name: deploy NSX Manager OVA
       nsxt_deploy_ova:

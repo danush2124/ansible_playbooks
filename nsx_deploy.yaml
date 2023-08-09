@@ -3,9 +3,7 @@
 # Playbook to deploy the first NSX Appliance node. Also checks the node
 # status
 #
-- hosts: localhost
-  connection: local
-  remote_user: root
+- hosts: all
   collections:
    - damhau.ansible_for_nsxt
   tasks:

@@ -3,11 +3,9 @@
   collections:
    - community.vmware
   gather_facts: false 
-  vars_files:
-    - node_add_vars.yml
   tasks:  
   - name: Gather only registered virtual machines
-    vmware_vm_info:
+    community.vmware.vmware_vm_info:
       hostname: '{{ vcenter_hostname }}'
       username: '{{ vcenter_username }}'
       password: '{{ vcenter_password }}'

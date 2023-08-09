@@ -5,6 +5,7 @@
 #
 - hosts: localhost
   connection: local
+  remote_user: root
   collections:
    - damhau.ansible_for_nsxt
   tasks:

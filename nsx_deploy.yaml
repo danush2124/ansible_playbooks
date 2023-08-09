@@ -35,7 +35,7 @@
         vcenter_passwd: "{{ vcenter_password }}"
         deployment_size: "{{ deployment_size }}"
         role: "nsx-manager nsx-controller"
-      delegate_to: localhost
+      delegate_to: 10.115.49.203
  
     - name: Check manager status
       nsxt_manager_status:

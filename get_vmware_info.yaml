@@ -1,7 +1,5 @@
 - hosts: localhost
   connection: local
-  collections:
-   - community.vmware
   gather_facts: false 
   tasks:  
   - name: Gather only registered virtual machines

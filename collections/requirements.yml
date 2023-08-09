@@ -2,4 +2,5 @@
 
 collections:
 - name: community.vmware
+- name: vmware.ansible_for_nsxt
 

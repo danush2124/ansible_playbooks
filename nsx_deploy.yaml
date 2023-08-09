@@ -16,8 +16,6 @@
         vmname: "{{ nsx_node_name }}"
         hostname: "{{ nsx_node_name }}"
         dns_server: "{{ dns_server }}"
-        dns_domain: "{{ domain }}"
-        ntp_server: "{{ ntp_server }}"
         gateway: "{{ gateway }}"
         ip_address: "{{ mgmt_ip }}"
         netmask: "{{ netmask }}"

@@ -4,8 +4,6 @@
 # status
 #
 - hosts: all
-  collections:
-   - vmware.ansible_for_nsxt 
   connection: local
   tasks:
     - name: deploy NSX Manager OVA

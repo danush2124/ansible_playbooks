@@ -11,7 +11,7 @@
   tasks:
     - name: deploy NSX Manager OVA
       nsxt_deploy_ova:
-        ovftool_path: /home/cloud_infra/ovftool/vmware-ovftool
+        ovftool_path: /home/cloud_infra
         datacenter: "{{ datacenter}}"
         datastore: "{{ datastore }}"
         portgroup: "{{ portgroup }}"

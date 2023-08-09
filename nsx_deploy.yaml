@@ -4,7 +4,6 @@
 # status
 #
 - hosts: all
-  become: yes
   collections:
    - damhau.ansible_for_nsxt
   tasks:

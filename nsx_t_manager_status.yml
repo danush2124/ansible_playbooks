@@ -1,6 +1,9 @@
- 
+- hosts: all
+  collections:
+   - damhau.ansible_for_nsxt
+  tasks: 
     - name: Check manager status
-      damhau.ansible_for_nsxt.nsxt_manager_status:
+      nsxt_manager_status:
           hostname: "{{ nsx_node_name  }}"
           username: "{{ nsx_username }}"
           password: "{{ nsx_password }}"

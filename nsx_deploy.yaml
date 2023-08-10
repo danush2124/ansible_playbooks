@@ -40,5 +40,5 @@
           hostname: "{{ nsx_node_name  }}"
           username: "{{ nsx_username }}"
           password: "{{ nsx_password }}"
-          validate_certs: "{{ validate_certs }}"
+          validate_certs: False
           wait_time: 50

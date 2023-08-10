@@ -34,11 +34,4 @@
         vcenter_passwd: "{{ vcenter_password }}"
         deployment_size: "{{ deployment_size }}"
         role: "NSX Manager"
- 
-    - name: Check manager status
-      damhau.ansible_for_nsxt.nsxt_manager_status:
-          hostname: "{{ nsx_node_name  }}"
-          username: "{{ nsx_username }}"
-          password: "{{ nsx_password }}"
-          validate_certs: False
-          wait_time: 50
+

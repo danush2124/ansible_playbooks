@@ -6,6 +6,7 @@
 - hosts: all
   collections:
    - damhau.ansible_for_nsxt
+   
   tasks:
     - name: deploy NSX Manager OVA
       nsxt_deploy_ova:
@@ -33,7 +34,6 @@
         vcenter_passwd: "{{ vcenter_password }}"
         deployment_size: "{{ deployment_size }}"
         role: "NSX Manager"
-
  
     - name: Check manager status
       nsxt_manager_status:

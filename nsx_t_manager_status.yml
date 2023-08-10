@@ -4,7 +4,7 @@
   tasks: 
     - name: Check manager status
       nsxt_manager_status:
-          hostname: "{{ nsx_node_name  }}"
+          hostname: "{{ nsx_node_ip  }}"
           username: "{{ nsx_username }}"
           password: "{{ nsx_password }}"
           validate_certs: False

@@ -32,7 +32,7 @@
         vcenter_user: "{{ vcenter_username }}"
         vcenter_passwd: "{{ vcenter_password }}"
         deployment_size: "{{ deployment_size }}"
-        role: "nsx-manager nsx-controller"
+        role: "nsx-manager"
 
  
     - name: Check manager status

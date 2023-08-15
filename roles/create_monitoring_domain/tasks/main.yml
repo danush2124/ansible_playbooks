@@ -1,15 +1,15 @@
 ---
 # tasks file for create_monitoring_domain
--name: Verify if monitoring domain exists
- block: 
-  - name: Set flag True
-    set_fact:
-      flag: True
-    when: "{{ monitoring_domain_alias }}" in "{{ md_alias_id_dict.keys()|list }}"
-  - name: Set flag False
-    set_fact:
-      flag: False
-    when: "{{ monitoring_domain_alias }}" not in "{{ md_alias_id_dict.keys()|list }}"  
+- name: Verify if monitoring domain exists
+  block: 
+   - name: Set flag True
+     set_fact:
+       flag: True
+     when: "{{ monitoring_domain_alias }}" in {{ md_alias_id_dict.keys()|list }}
+   - name: Set flag False
+     set_fact:
+       flag: False
+     when: "{{ monitoring_domain_alias }}" not in {{ md_alias_id_dict.keys()|list }}
     
 - name: Create Monitoring Domain
   uri:

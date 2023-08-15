@@ -13,4 +13,5 @@
       prompt: "Enter FM password"
       private: true
   roles:
+    - get_monitoring_domain_facts
     - create_monitoring_domain

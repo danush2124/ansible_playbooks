@@ -21,8 +21,6 @@
   register: output
   ignore_error: True
 
-
-  
 - debug:
     msg: "Monitoring Domain successfully deployed"
   when:  output.status in [200,201] 

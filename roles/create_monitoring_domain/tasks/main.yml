@@ -3,9 +3,6 @@
 - name: Verify if monitoring domain exists
   block: 
    - set_fact:
-       flag: True
-     when: "{{ monitoring_domain_alias }}" in "{{ md_alias_id_dict.keys()|list }}"
-   - set_fact:
        flag: False
      when: "{{ monitoring_domain_alias }}" not in "{{ md_alias_id_dict.keys()|list }}"
     

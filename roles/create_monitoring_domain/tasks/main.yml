@@ -1,9 +1,5 @@
 ---
 # tasks file for create_monitoring_domain
-- name: Verify if monitoring domain exists
-  set_fact:
-    set_flag: "{{ True if monitoring_domain_alias in md_alias_id_dict.keys()|list else False }}"
-    
 - name: Create Monitoring Domain
   uri:
     url: https://{{fm_ip}}/api/v1.3/cloud/monitoringDomains
@@ -23,17 +19,18 @@
     body_format: json
     status_code: 201,200,409
   register: output
-  when: "{{ set_flag }}" == False
+  ignore_error: True
+
 
   
 - debug:
     msg: "Monitoring Domain successfully deployed"
-  when:  output.status in [200,201] and "{{ set_flag }}" == False
+  when:  output.status in [200,201] 
   
 - debug:
     msg: "Monitoring Domain with the same alias exists and has monitoring domain ID {{ md_alias_id_dict [ monitoring_domain_alias ] }}, creation failed"
-  when:  "{{ set_flag }}" == True
+  when:  output.status in [409]
   
 - debug:
     msg: "Monitoring Domain deployment failed"
-  when:  output.status not in [200,201,409] and "{{ set_flag }}" == False
+  when:  output.status not in [200,201,409]

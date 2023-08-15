@@ -1,11 +1,11 @@
 ---
 # tasks file for create_monitoring_domain
 - set_fact: 
-      flag: True
+    flag: True
   when: "{{ monitoring_domain_alias }}" in "{{ md_alias_id_dict.keys()|list }}"
 
 - set_fact: 
-      flag: False
+    flag: False
   when: "{{ monitoring_domain_alias }}" not in "{{ md_alias_id_dict.keys()|list }}"  
   
 - name: Create Monitoring Domain

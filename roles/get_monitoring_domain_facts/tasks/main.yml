@@ -2,7 +2,7 @@
 # tasks file for get_monitoringDomain_facts
 - name: Get Monitoring Domain Facts
   uri:
-    url: https://{{fm_ip}}/api/v1.3/cloud/monitoringDomains?platform="{{ platform }}"
+    url: https://{{ fm_ip }}/api/v1.3/cloud/monitoringDomains?platform={{ platform }}
     method: GET
     user: "{{ fm_username }}"
     password: "{{ fm_password }}"

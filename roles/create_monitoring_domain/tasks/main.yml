@@ -2,7 +2,7 @@
 # tasks file for create_monitoring_domain
 - name: Verify if monitoring domain exists
   set_fact:
-    flag: "{{ 'True' if monitoring_domain_alias in md_alias_id_dict.keys()|list else 'False' }}"
+    flag: "{{ True if monitoring_domain_alias in md_alias_id_dict.keys()|list else False }}"
     
 - name: Create Monitoring Domain
   uri:
@@ -23,16 +23,17 @@
     body_format: json
     status_code: 201,200,409
   register: output
+  when: "{{ flag }}" == False
 
   
 - debug:
     msg: "Monitoring Domain successfully deployed"
-  when:  output.status in [200,201]
+  when:  output.status in [200,201] and "{{ flag }}" == False
   
 - debug:
     msg: "Monitoring Domain with the same alias exists and has monitoring domain ID {{ md_alias_id_dict [ monitoring_domain_alias ] }}, creation failed"
-  when:  output.status in [409]
+  when:  "{{ flag }}" == True
   
 - debug:
     msg: "Monitoring Domain deployment failed"
-  when:  output.status not in [200,201,409]  
+  when:  output.status not in [200,201,409] and "{{ flag }}" == False

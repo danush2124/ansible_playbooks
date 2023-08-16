@@ -1,6 +1,6 @@
 ---
 # tasks file for get_vseries_connection_facts
-- setfact:
+- set_fact:
       platform: "vmware"
   when: "{{ platofrm }}" == "vmwareEsxi"
   

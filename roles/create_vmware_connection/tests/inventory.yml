@@ -6,9 +6,11 @@ gigamon_infra:
       vcenter_username:
       vcenter_password:
       monitoring_domain_alias:
+      platform:              # vmwareEsxi
     connection2:
       connection_alias:
       vcenter_ip:
       vcenter_username:
       vcenter_password:
       monitoring_domain_alias: 
+      platform:              # vmwareEsxi

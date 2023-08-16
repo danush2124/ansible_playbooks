@@ -1,0 +1,7 @@
+---
+- hosts: gigamon_infra
+  connection: local
+  gather_facts: false
+  roles:
+    - get_monitoring_domain_facts
+    - create_vmware_connection

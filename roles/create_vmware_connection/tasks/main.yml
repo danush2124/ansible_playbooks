@@ -22,6 +22,7 @@
     body_format: json
     status_code: 201,200,409
   register: output
+  ignore_errors: True
 - debug:
     msg: "Connection successfully deployed"
   when:  output.status in [200,201]

@@ -16,8 +16,7 @@
             "username": "{{ vcenter_username }}",
             "password": "{{ vcenter_password }}",
             "tappingMethod": "platform",
-            "monitoringDomainId": "{{ md_alias_id_dict[monitoring_domain_alias] }}",
-            
+            "monitoringDomainId": "{{ md_alias_id_dict[monitoring_domain_alias] }}"
             }
     body_format: json
     status_code: 201,200,409

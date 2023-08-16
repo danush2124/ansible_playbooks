@@ -18,8 +18,8 @@
             "availabilityZone": "{{ aws_availability_zone }}",
             "accessKey": "{{ aws_access_key }}",
             "secretKey": "{{ aws_secret_key }}",
-            "credentialId": "{{ aws_credential_id }}",
-            "proxyServerId": "{{ aws_proxy_server_id }},
+            #"credentialId": "{{ aws_credential_id }}",
+            #"proxyServerId": "{{ aws_proxy_server_id }},
             "monitoringDomainId": "{{ md_alias_id_dict[monitoring_domain_alias] }}",
             "secureMirrorTraffic": "{{ aws_secure_mirror_traffic | default(false) }}"
             }

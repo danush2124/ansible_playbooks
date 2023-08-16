@@ -39,7 +39,7 @@
   with_items: "{{ output.json.awsConnections }}"
   when: platform == 'aws'
 
-  - set_fact:
+- set_fact:
     facts_conn_dict: "{{ facts_conn_dict|default({}) | combine ({ item.id : item.monitoringDomainId}) }}"
   with_items: "{{ output.json.azureConnections }}" 
   when: platform == 'azure'

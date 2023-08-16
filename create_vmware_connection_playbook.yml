@@ -5,3 +5,4 @@
   roles:
     - get_monitoring_domain_facts
     - create_vmware_connection
+    - get_connection_facts

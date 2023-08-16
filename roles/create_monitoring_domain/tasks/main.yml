@@ -13,7 +13,7 @@
     body: {
             "alias": "{{ monitoring_domain_alias }}",
             "useLoadBalancer": false,
-            "mtu": "{{ mtu | default(9100) }}",
+            "mtu": "{{ mtu | default(9000) }}",
             "platform": "{{ platform }}"
             }
     body_format: json

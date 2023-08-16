@@ -19,7 +19,7 @@
             "monitoringDomainId": "{{ md_alias_id_dict[monitoring_domain_alias] }}"
             }
     body_format: json
-    status_code: 201,200,409
+    status_code: 201,200,409,404
   register: output
   ignore_errors: True
 - debug:
@@ -27,7 +27,7 @@
   when:  output.status in [200,201]
 - debug:
     msg: "Connection with the same alias exists, creation failed"
-  when:  output.status in [409]
+  when:  output.status in [409, 404]
 - debug:
     msg: "Connection deployment failed"
-  when:  output.status not in [200,201,409] 
+  when:  output.status not in [200,201,409,404] 

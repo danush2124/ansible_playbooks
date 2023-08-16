@@ -12,7 +12,7 @@
     timeout: 30
     body: {
             "alias": "{{ connection_alias }}",
-            "authType": "{{ aws_auth_type|default("basicCredentials") }}",
+            "authType": basicCredentials,
             "regionName": "{{ aws_region }}",
             "vpcId": "{{ aws_vpc_id }}",
             "availabilityZone": "{{ aws_availability_zone }}",

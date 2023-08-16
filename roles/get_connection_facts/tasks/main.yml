@@ -1,8 +1,8 @@
 ---
 # tasks file for get_vseries_connection_facts
 - set_fact:
-      platform: "vmware"
-  when: "{{ platofrm }}" == "vmwareEsxi"
+      platform: "{{ "vmware" if platform == vmwareEsxi }}"
+
   
 - name: Get Connection ID
   uri:

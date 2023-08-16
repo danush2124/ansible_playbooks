@@ -21,9 +21,9 @@
 
 - set_fact:
     facts_conn_dict: "{{ facts_conn_dict|default({}) | combine ({ item.id : item.monitoringDomainId}) }}"
-  with_items: "{{ output.json.vmwareConnections }}" 
+  with_items: "{{ output.json.{{ platform }}Connections }}" 
 
 - set_fact:
     connection_dict: "{{ connection_dict|default({}) | combine ({ item.alias : item.id }) }}"
-  with_items: "{{ output.json.vmwareConnections }}"
+  with_items: "{{ output.json.{{ platform }}Connections }}"
 

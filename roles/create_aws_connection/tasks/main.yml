@@ -35,14 +35,4 @@
   register: output
   when:  "{{ present_flag }} == False
   
-- debug:
-    msg: "Connection successfully deployed"
-  when:  "{{ present_flag }} == False && output.status in [200,201]
-  
-- debug:
-    msg: "Connection with the same alias exists, creation failed"
-  when: "{{ present_flag }} == True
-  
-- debug:
-    msg: "Connection deployement failed"
-  when:  "{{ present_flag }} == False && output.status not in [200,201,409] 
+

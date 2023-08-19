@@ -34,12 +34,15 @@
     status_code: 201,200,409
   register: output
   when:  "{{ present_flag }} == False
+  
 - debug:
     msg: "Connection successfully deployed"
-  when:  output.status in [200,201]
+  when:  "{{ present_flag }} == False && output.status in [200,201]
+  
 - debug:
     msg: "Connection with the same alias exists, creation failed"
-  when:  output.status in [409]
+  when: "{{ present_flag }} == True
+  
 - debug:
     msg: "Connection deployement failed"
-  when:  output.status not in [200,201,409] 
+  when:  "{{ present_flag }} == False && output.status not in [200,201,409] 

@@ -25,4 +25,4 @@
 - set_fact:
     md_connection_dict: "{{ md_connection_dict|default({}) | combine ({item.alias : item.connections}) }}"
   with_items: "{{ output.json.monitoringDomains }}"  
-  when: item.connections.exists
+  when: "{{ connections }}" in item

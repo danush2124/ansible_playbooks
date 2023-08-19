@@ -5,7 +5,7 @@
 - set_fact:
     present_flag: True
   with_items: "{{ md_connection_dict[monitoring_domain_alias] }}" 
-  when: item.alias == "{{ connection_alias }}"
+  when: item.alias == "{{ connection_alias }}" and ("{{ monitoring_domain_alias }}" in item.keys()|list )
     
 - name: Create AWS Connection 
   uri:

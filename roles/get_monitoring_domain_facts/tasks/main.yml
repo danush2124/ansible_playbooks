@@ -26,3 +26,8 @@
     md_connection_dict: "{{ md_connection_dict|default({}) | combine ({item.alias : item.connections}) }}"
   with_items: "{{ output.json.monitoringDomains }}"  
   when: "'connections' in item.keys()|list"
+
+- set_fact:
+    md_connection_dict: "{{ combine ({item.alias : {[]}) }}"
+  with_items: "{{ output.json.monitoringDomains }}"  
+  when: "'connections' not in item.keys()|list"

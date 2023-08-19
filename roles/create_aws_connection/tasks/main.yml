@@ -1,5 +1,12 @@
 ---
 # tasks file for create_aws_connection
+- set_fact:
+    present_flag: False
+- set_fact:
+    present_flag: True
+  when: "{{ connection_alias }}"== "{{ item.alias }}"
+  with_items: "{{ md_connection_dict[monitoring_domain_alias] }}" 
+    
 - name: Create AWS Connection 
   uri:
     url: https://{{ fm_ip }}/api/v1.3/cloud/aws/connections
@@ -26,6 +33,7 @@
     body_format: json
     status_code: 201,200,409
   register: output
+  when:  "{{ present_flag }} == False
 - debug:
     msg: "Connection successfully deployed"
   when:  output.status in [200,201]

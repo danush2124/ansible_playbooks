@@ -54,10 +54,10 @@
 
 - set_fact:
     facts_conn_dict: "{{ facts_conn_dict|default({}) | combine ({ item.id : item.monitoringDomainId}) }}"
-  with_items: "{{ output.json.azureConnections }}" 
+  with_items: "{{ output.json.kubernetesUctConnections }}" 
   when: platform == 'ucts'
 
 - set_fact:
     connection_dict: "{{ connection_dict|default({}) | combine ({ item.alias : item.id }) }}"
-  with_items: "{{ output.json.azureConnections }}"
+  with_items: "{{ output.json.kubernetesUctConnections }}"
   when: platform == 'ucts'

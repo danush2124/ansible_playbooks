@@ -28,7 +28,7 @@
             "applicationSecretKey": "{{ azure_application_secret_key }}",
             "virtualNetworkId": "{{ azure_virtual_network_id }}",
             #"credentialId": "{{ azure_credential_id }}",
-            "resourceGroupNames": "{{ azure_resource_group_names_list }},
+            "resourceGroupNames": "{{ azure_resource_group_names_list }}",
             "monitoredResourceGroupNames": "{{ azure_monitored_resource_group_names }}",
             "msiPort": "{{ azure_msi_port| default(0) }}",
             #"proxyServerId": "{{ azure_proxy_server_id }}",

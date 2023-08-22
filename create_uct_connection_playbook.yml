@@ -1,7 +1,8 @@
 ---
-- hosts: gigamon_infra
+- hosts: all
   connection: local
   gather_facts: false
   roles:
     - get_monitoring_domain_facts
     - create_uct_connection
+    - get_connection_facts

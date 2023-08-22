@@ -1,5 +1,13 @@
 ---
 # tasks file for create_azure_connection
+- set_fact:
+    present_flag: False
+    
+- set_fact:
+    present_flag: True
+  with_items: "{{ md_connection_dict[monitoring_domain_alias] }}" 
+  when: item.alias == connection_alias and (monitoring_domain_alias in md_connection_dict.keys()|list )
+    
 - name: Create Azure Connection 
   uri:
     url: https://{{ fm_ip }}/api/v1.3/cloud/azure/connections
@@ -19,23 +27,15 @@
             "applicationClientId": "{{ azure_application_client_id }}",
             "applicationSecretKey": "{{ azure_application_secret_key }}",
             "virtualNetworkId": "{{ azure_virtual_network_id }}",
-            "credentialId": "{{ azure_credential_id }}",
+            #"credentialId": "{{ azure_credential_id }}",
             "resourceGroupNames": "{{ azure_resource_group_names_list }},
             "monitoredResourceGroupNames": "{{ azure_monitored_resource_group_names }}",
             "msiPort": "{{ azure_msi_port| default(0) }}",
-            "proxyServerId": "{{ azure_proxy_server_id }}",
+            #"proxyServerId": "{{ azure_proxy_server_id }}",
             "monitoringDomainId": "{{ md_alias_id_dict[monitoring_domain_alias] }}",
             "secureMirrorTraffic": "{{ azure_secure_mirror_traffic | default(false) }}"
             }
     body_format: json
     status_code: 201,200,409
   register: output
-- debug:
-    msg: "Connection successfully deployed"
-  when:  output.status in [200,201]
-- debug:
-    msg: "Connection with the same alias exists, creation failed"
-  when:  output.status in [409]
-- debug:
-    msg: "Connection deployment failed"
-  when:  output.status not in [200,201,409] 
+  when:  not present_flag 

@@ -1,5 +1,13 @@
 ---
 # tasks file for create_uct_connection
+- set_fact:
+    present_flag: False
+    
+- set_fact:
+    present_flag: True
+  with_items: "{{ md_connection_dict[monitoring_domain_alias] }}" 
+  when: item.alias == connection_alias and (monitoring_domain_alias in md_connection_dict.keys()|list )
+  
 - name: Create Connection 
   uri:
     url: https://{{FM_IP}}/api/v1.3/cloud/ucts/connections

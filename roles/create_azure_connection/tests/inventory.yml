@@ -15,7 +15,7 @@ gigamon_infra:
       azure_msi_port:
       azure_proxy_server_id:
       azure_secure_mirror_traffic:
-      monitoring_alias:
+      monitoring_domain_alias:
     connection2:
       connection_alias:
       azure_auth_type:
@@ -31,4 +31,4 @@ gigamon_infra:
       azure_msi_port:
       azure_proxy_server_id:
       azure_secure_mirror_traffic:
-      monitoring_alias: 
+      monitoring_domain_alias: 

@@ -3,8 +3,11 @@
 - set_fact:
     platform: "vmware"
   when: platform == 'vmwareEsxi'
-
   
+- set_fact:
+    platform: "ucts"
+  when: platform == 'kubernetesUct'
+
 - name: Get Connection ID
   uri:
     url: https://{{ fm_ip }}/api/v1.3/cloud/{{ platform }}/connections
@@ -48,3 +51,13 @@
     connection_dict: "{{ connection_dict|default({}) | combine ({ item.alias : item.id }) }}"
   with_items: "{{ output.json.azureConnections }}"
   when: platform == 'azure'
+
+- set_fact:
+    facts_conn_dict: "{{ facts_conn_dict|default({}) | combine ({ item.id : item.monitoringDomainId}) }}"
+  with_items: "{{ output.json.azureConnections }}" 
+  when: platform == 'ucts'
+
+- set_fact:
+    connection_dict: "{{ connection_dict|default({}) | combine ({ item.alias : item.id }) }}"
+  with_items: "{{ output.json.azureConnections }}"
+  when: platform == 'ucts'

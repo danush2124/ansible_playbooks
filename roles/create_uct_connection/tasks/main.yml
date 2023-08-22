@@ -10,7 +10,7 @@
   
 - name: Create Connection 
   uri:
-    url: https://{{FM_IP}}/api/v1.3/cloud/ucts/connections
+    url: https://{{ fm_ip }}/api/v1.3/cloud/ucts/connections
     method: Post
     user: "{{ fm_username }}"
     password: "{{ fm_password }}"

@@ -29,7 +29,7 @@
             "virtualNetworkId": "{{ azure_virtual_network_id }}",
             #"credentialId": "{{ azure_credential_id }}",
             "resourceGroupNames": "{{ azure_resource_group_names_list }}",
-            "monitoredResourceGroupNames": "{{ azure_monitored_resource_group_names }}",
+            "monitoredResourceGroupNames": "{{ azure_monitored_resource_group_names_list }}",
             "msiPort": "{{ azure_msi_port| default(0) }}",
             #"proxyServerId": "{{ azure_proxy_server_id }}",
             "monitoringDomainId": "{{ md_alias_id_dict[monitoring_domain_alias] }}",

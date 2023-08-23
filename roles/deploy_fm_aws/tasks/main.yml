@@ -25,8 +25,7 @@
 - name: Extract IP
   set_fact:
     instance_ip:  "{{ fm_instance.instances[0].public_ip }}"
-
-
+    
 - name: Extract FM Instance ID
   set_fact:
     instance_id:  "{{ fm_instance.instances[0].instance_id }}"

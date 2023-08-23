@@ -2,6 +2,7 @@ gigamon_infra:
   hosts:
     fm1:
       instance_name:
+      instance_type:
       aws_region:
       ami_id:
       aws_access_key:

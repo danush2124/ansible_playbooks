@@ -10,7 +10,7 @@
     aws_secret_key: "{{ aws_secret_key }}"
     security_group: "{{ security_group }}"
     key_name: "{{ key_name_for_access }}"
-    #iam_instance_profile: "{{ iam_role_name }}"
+    instance_role: "{{ iam_role_name }}"
     vpc_subnet_id: "{{ vpc_subnet_id }}"    
     wait: yes
   register: fm_instance

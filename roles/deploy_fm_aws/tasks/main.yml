@@ -34,7 +34,7 @@
     reuse_existing_ip_allowed: yes
     state: present
     region: "{{ aws_region }}"
-    instance_id: "{{ instance_id }}"
+    device_id: "{{ instance_id }}"
   register: instance_eip
       
 - name: Add Volume

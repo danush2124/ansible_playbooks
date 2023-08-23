@@ -33,9 +33,9 @@
  
 - name: associate EIP to FM
   amazon.aws.ec2_eip:
-    device_id: instance_id  
-	ip: instance_ip
-	
+    device_id: fm_instance.id
+      ip: fm_instance.ip
+      
 - name: Add Volume
   amazon.aws.ec2_vol:
     instance: "{{ instance_id }}"

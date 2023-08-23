@@ -30,9 +30,9 @@
   set_fact:
     instance_id:  "{{ fm_instance.instances[0].instance_id }}"
  
-- name: associate EIP to FM
-  amazon.aws.ec2_eip:
-    device_id: "{{ instance_id }}"
+#- name: associate EIP to FM
+#  amazon.aws.ec2_eip:
+#    device_id: "{{ instance_id }}"
       
 - name: Add Volume
   amazon.aws.ec2_vol:

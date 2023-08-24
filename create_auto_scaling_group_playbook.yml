@@ -30,13 +30,9 @@
         name: "target-tracking-ploicy"
         policy_type: TargetTrackingScaling
         target_tracking_config:
-          customized_metric_spec:
-            metric_name: metric_1
-            namespace: namespace_1
-            statistic: Average
-            unit: Gigabits
-            dimensions: [{'Name': 'dimension1', 'Value': 'value1'}]
-          disable_scalein: true
+          predefined_metric_spec:
+            predefined_metric_type: ASGAverageNetworkIn
           target_value: 98.0
         asg_name: {{ auto_scaling_group_name }}
+        estimated_instance_warmup: 300
       register: result

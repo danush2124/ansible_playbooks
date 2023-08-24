@@ -1,0 +1,37 @@
+
+- name: create launch config
+  community.aws.autoscaling_launch_config:
+    name: {{ launch_template_name }}
+    image_id: {{ vseries_ami_id }}
+    key_name: {{ aws_key }}
+    region: {{ aws_region }}
+    security_groups: {{ aws_security_group }}
+    instance_type: {{ vseries_instance_type }}
+    assign_public_ip: true
+
+- amazon.aws.autoscaling_group:
+    name: {{ auto_scaling_group_name }}
+    launch_config_name: {{ launch_template_name }}
+    health_check_period: 60
+    health_check_type: ELB
+    replace_all_instances: true
+    min_size: {{ autoscale_grp_min_size  }}
+    max_size: {{ autoscale_grp_max_size}}
+    desired_capacity: {{ autoscale_grp_desired_capacity }}
+    region: {{ aws_region }}
+    
+- name: create TargetTrackingScaling custom policy
+  ec2_scaling_policy:
+    name: "target-tracking-ploicy"
+    policy_type: TargetTrackingScaling
+    target_tracking_config:
+      customized_metric_spec:
+        metric_name: metric_1
+        namespace: namespace_1
+        statistic: Average
+        unit: Gigabits
+        dimensions: [{'Name': 'dimension1', 'Value': 'value1'}]
+      disable_scalein: true
+      target_value: 98.0
+    asg_name: {{ auto_scaling_group_name }}
+  register: result

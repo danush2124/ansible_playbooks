@@ -1,0 +1,8 @@
+---
+- hosts: all
+  connection: local
+  gather_facts: false
+  roles:
+    - get_monitoring_domain_facts
+    - get_connection_facts
+    - create_aws_monitoring_session

@@ -1,1 +1,11 @@
-
+- name: Create an ELB and attach a listener
+  community.aws.elb_network_lb:
+    name: {{ elb_name }}
+    subnets: {{ elb_subnet_list }}
+    listeners:
+      - Protocol: TCP # Required. The protocol for connections from clients to the load balancer (TCP, TLS, UDP or TCP_UDP) (case-sensitive).
+        Port: 80 # Required. The port on which the load balancer is listening.
+        DefaultActions:
+          - Type: forward # Required. Only 'forward' is accepted at this time
+            TargetGroupName: {{ elb_target_group }} # Required. The name of the target group
+    state: present

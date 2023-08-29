@@ -1,0 +1,10 @@
+#!/bin/bash
+touch /etc/gigamon-cloud.conf
+chown 0644 /etc/gigamon-cloud.conf
+echo "Registration:
+                  groupName: "{{ monitoring_domain_alias }}"
+                  subGroupName: "{{ gigamon_suite_vpc_name }}"
+                  user: "{{ fm_username }}"
+                  password: "{{ fm_password }}"
+                  remoteIP: "{{ fm_ip }}"
+                  remotePort: 443">> /etc/gigamon-cloud.conf

@@ -61,5 +61,6 @@
        device_index: 1
        subnet_id: "{{ eth1_subnet_id }}"
        security_groups: "{{ aws_security_group }}"
+       region: "{{ aws_region }}"
        state: present
      with_items: "{{ vseries_instance_list }}"

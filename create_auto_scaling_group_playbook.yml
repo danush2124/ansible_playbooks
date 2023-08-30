@@ -5,11 +5,15 @@
 
     
   tasks:
-   - name: Create user_data.sh
-     template:
-       src: user_data.j2
-       dest: /tmp/user_data.sh
 
+   - name: render template to variable
+     set_fact:
+       template_value: "{{ lookup('template', 'user_data.j2') }}"
+
+   - name: write base64 encoded user_data.sh
+     copy:
+       dest: "/tmp/user_data.sh"
+       content: "{{ template_value | b64encode }}"
       
    - name: Create an ec2 launch template
      community.aws.ec2_launch_template:

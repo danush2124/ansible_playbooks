@@ -49,3 +49,5 @@
        name:  "{{ auto_scaling_group_name }}"
        region: "{{ aws_region }}"
      register: asgs
+   - debug:
+       msg: {{ asgs }}

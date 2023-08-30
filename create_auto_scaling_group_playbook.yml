@@ -49,4 +49,7 @@
        region: "{{ aws_region }}"
      register: asgs
    - debug:
-       msg: "{{ asgs }}"
+       msg: "{{ asgs.results }}"
+   - set_fact:
+       vseries_instance_list: "{{ item.instances }}'
+     with_item: '{{ asgs.results }}"

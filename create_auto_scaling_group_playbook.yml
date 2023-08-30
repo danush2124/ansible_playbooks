@@ -47,4 +47,5 @@
        aws_access_key: "{{ aws_access_key }}"
        aws_secret_key: "{{ aws_secret_key }}"     
        name:  "{{ auto_scaling_group_name }}"
+       region: "{{ aws_region }}"
      register: asgs

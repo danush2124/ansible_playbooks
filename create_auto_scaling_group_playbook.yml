@@ -32,7 +32,6 @@
        min_size: "{{ autoscale_grp_min_size  }}"
        max_size: "{{ autoscale_grp_max_size}}"
        desired_capacity: "{{ autoscale_grp_desired_capacity }}"
-       tag
        region: "{{ aws_region }}"
     
    - name: create TargetTrackingScaling custom policy

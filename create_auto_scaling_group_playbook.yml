@@ -22,8 +22,6 @@
           groups: "{{ aws_security_group_eth1 }}"
           subnet_id: "{{ vpc_subnet_id_eth1 }}"   
        region: "{{ aws_region }}"
-       associate_public_ip_address: yes
-       #iam_instance_profile:
 
    - name: Create Autoscaling Group 
      amazon.aws.autoscaling_group:
@@ -39,3 +37,33 @@
        max_size: "{{ autoscale_grp_max_size}}"
        desired_capacity: "{{ autoscale_grp_desired_capacity }}"
        region: "{{ aws_region }}"
+
+   - name: create TargetTrackingScaling custom policy
+     ec2_scaling_policy:
+       aws_access_key: "{{ aws_access_key }}"
+       aws_secret_key: "{{ aws_secret_key }}"      
+       name: "target-tracking-policy"
+       policy_type: TargetTrackingScaling
+       target_tracking_config:
+         predefined_metric_spec:
+           predefined_metric_type: ASGAverageNetworkIn
+         target_value: 98.0
+       asg_name: "{{ auto_scaling_group_name }}"
+       estimated_instance_warmup: 300
+       region: "{{ aws_region }}"
+     register: result
+      
+   - name: Gather Facts for the auto scaling group
+     community.aws.ec2_asg_info:
+       aws_access_key: "{{ aws_access_key }}"
+       aws_secret_key: "{{ aws_secret_key }}"     
+       name:  "{{ auto_scaling_group_name }}"
+       region: "{{ aws_region }}"
+     register: asgs
+     
+   - debug:
+       msg: "{{ asgs.results }}"
+       
+   - set_fact:
+       vseries_instance_list: "{{ item.instances }}"
+     with_items: "{{ asgs.results }}"   

@@ -52,4 +52,4 @@
        msg: "{{ asgs.results }}"
    - set_fact:
        vseries_instance_list: "{{ item.instances }}'
-     with_item: '{{ asgs.results }}"
+     with_items: '{{ asgs.results }}"

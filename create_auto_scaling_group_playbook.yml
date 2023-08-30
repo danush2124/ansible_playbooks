@@ -5,12 +5,7 @@
 
     
   tasks:
-  
-   - name: Create UCT_CONTROLLER_INSTALL_YAML
-     template:
-       src: user_data.j2
-       dest: user_data.sh
-       
+
    - name: Create an ec2 launch template
      community.aws.ec2_launch_template:
        aws_access_key: "{{ aws_access_key }}"
@@ -20,7 +15,17 @@
        key_name: "{{ aws_key }}"
        instance_type: "{{ vseries_instance_type }}"
        instance_type: "{{ vseries_instance_type }}"  
-       user_data: "{{ lookup('file', user_data.sh) }}"
+       user_data: |
+                  #!/bin/bash
+                  touch /etc/gigamon-cloud.conf
+                  chown 0644 /etc/gigamon-cloud.conf
+                  echo "Registration:
+                                    groupName: "{{ monitoring_domain_alias }}"
+                                    subGroupName: "{{ gigamon_suite_vpc_name }}"
+                                    user: "{{ fm_username }}"
+                                    password: "{{ fm_password }}"
+                                    remoteIP: "{{ fm_ip }}"
+                                    remotePort: 443">> /etc/gigamon-cloud.conf
        network_interfaces:
         - delete_on_termination: yes
           device_index: 0

@@ -2,47 +2,47 @@
   connection: local
   gather_facts: false
   tasks:
-    - name: create launch config
-      community.aws.autoscaling_launch_config:
-        aws_access_key: "{{ aws_access_key }}"
-        aws_secret_key: "{{ aws_secret_key }}"
-        name: "{{ launch_template_name }}"
-        image_id: "{{ vseries_ami_id }}"
-        key_name: "{{ aws_key }}"
-        region: "{{ aws_region }}"
-        security_groups: "{{ aws_security_group }}"
-        instance_type: "{{ vseries_instance_type }}"
-        assign_public_ip: true
+   - name: create launch config
+     community.aws.autoscaling_launch_config:
+       aws_access_key: "{{ aws_access_key }}"
+       aws_secret_key: "{{ aws_secret_key }}"
+       name: "{{ launch_template_name }}"
+       image_id: "{{ vseries_ami_id }}"
+       key_name: "{{ aws_key }}"
+       region: "{{ aws_region }}"
+       security_groups: "{{ aws_security_group }}"
+       instance_type: "{{ vseries_instance_type }}"
+       assign_public_ip: true
 
-    - name: Create Autoscaling Group 
-      amazon.aws.autoscaling_group:
-        aws_access_key: "{{ aws_access_key }}"
-        aws_secret_key: "{{ aws_secret_key }}"      
-        name: "{{ auto_scaling_group_name }}"
-        launch_config_name: "{{ launch_template_name }}"
-        replace_all_instances: true
-        min_size: "{{ autoscale_grp_min_size  }}"
-        max_size: "{{ autoscale_grp_max_size}}"
-        desired_capacity: "{{ autoscale_grp_desired_capacity }}"
-        region: "{{ aws_region }}"
+   - name: Create Autoscaling Group 
+     amazon.aws.autoscaling_group:
+       aws_access_key: "{{ aws_access_key }}"
+       aws_secret_key: "{{ aws_secret_key }}"      
+       name: "{{ auto_scaling_group_name }}"
+       launch_config_name: "{{ launch_template_name }}"
+       replace_all_instances: true
+       min_size: "{{ autoscale_grp_min_size  }}"
+       max_size: "{{ autoscale_grp_max_size}}"
+       desired_capacity: "{{ autoscale_grp_desired_capacity }}"
+       region: "{{ aws_region }}"
     
-    - name: create TargetTrackingScaling custom policy
-      ec2_scaling_policy:
-        aws_access_key: "{{ aws_access_key }}"
-        aws_secret_key: "{{ aws_secret_key }}"      
-        name: "target-tracking-policy"
-        policy_type: TargetTrackingScaling
-        target_tracking_config:
-          predefined_metric_spec:
-            predefined_metric_type: ASGAverageNetworkIn
-          target_value: 98.0
-        asg_name: "{{ auto_scaling_group_name }}"
-        estimated_instance_warmup: 300
-      register: result
+   - name: create TargetTrackingScaling custom policy
+     ec2_scaling_policy:
+       aws_access_key: "{{ aws_access_key }}"
+       aws_secret_key: "{{ aws_secret_key }}"      
+       name: "target-tracking-policy"
+       policy_type: TargetTrackingScaling
+       target_tracking_config:
+         predefined_metric_spec:
+           predefined_metric_type: ASGAverageNetworkIn
+         target_value: 98.0
+       asg_name: "{{ auto_scaling_group_name }}"
+       estimated_instance_warmup: 300
+     register: result
       
-    - name: Gather Facts for the auto scaling group
-      ec2_asg_facts:
-        aws_access_key: "{{ aws_access_key }}"
-        aws_secret_key: "{{ aws_secret_key }}"     
-        name:  "{{ auto_scaling_group_name }}"
-      register: asgs
+   - name: Gather Facts for the auto scaling group
+     ec2_asg_facts:
+       aws_access_key: "{{ aws_access_key }}"
+       aws_secret_key: "{{ aws_secret_key }}"     
+       name:  "{{ auto_scaling_group_name }}"
+     register: asgs

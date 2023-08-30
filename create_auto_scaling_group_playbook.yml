@@ -48,15 +48,18 @@
        name:  "{{ auto_scaling_group_name }}"
        region: "{{ aws_region }}"
      register: asgs
+     
    - debug:
        msg: "{{ asgs.results }}"
+       
    - set_fact:
        vseries_instance_list: "{{ item.instances }}"
      with_items: "{{ asgs.results }}"
-  - amazon.aws.ec2_eni:
-      instance_id: {{ item.instance_id }}
-      device_index: 1
-      subnet_id: "{{ eth1_subnet_id }}"
-      security_groups: "{{ aws_security_group }}"
-      state: present
-    with_items: {{ vseries_instance_list }}
+     
+   - amazon.aws.ec2_eni:
+       instance_id: {{ item.instance_id }}
+       device_index: 1
+       subnet_id: "{{ eth1_subnet_id }}"
+       security_groups: "{{ aws_security_group }}"
+       state: present
+     with_items: {{ vseries_instance_list }}

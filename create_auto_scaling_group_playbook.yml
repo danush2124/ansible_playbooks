@@ -5,10 +5,12 @@
 
     
   tasks:
-  - name: Create user_data.sh
-    template:
-      src: user_data.j2
-      dest: /tmp/user_data.sh
+   - name: Create user_data.sh
+     template:
+       src: user_data.j2
+       dest: /tmp/user_data.sh
+
+      
    - name: Create an ec2 launch template
      community.aws.ec2_launch_template:
        aws_access_key: "{{ aws_access_key }}"

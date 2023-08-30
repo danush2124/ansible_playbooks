@@ -4,7 +4,7 @@
   vars_files:
     - node_add_vars.yml
   tasks:  
-    - name: Loop over role
+   - name: Loop over role
       include_role: 
         name: add_node_to_fm
       vars:

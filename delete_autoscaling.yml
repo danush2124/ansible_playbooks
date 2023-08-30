@@ -21,13 +21,13 @@
        region: "{{ aws_region }}"
        
    - name: Delete launch config
-     community.aws.autoscaling_launch_config:
+     community.aws.ec2_launch_template:
        aws_access_key: "{{ aws_access_key }}"
        aws_secret_key: "{{ aws_secret_key }}"
        name: "{{ launch_template_name }}"
        region: "{{ aws_region }}"
        state: absent
-       assign_public_ip: true
+
 
 
     

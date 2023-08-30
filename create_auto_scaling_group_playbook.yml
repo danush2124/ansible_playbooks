@@ -1,6 +1,12 @@
 - hosts: localhost
   connection: local
   gather_facts: false
+
+- name: Create UCT_CONTROLLER_INSTALL_YAML
+  template:
+    src: user_data.j2
+    dest: user_data.sh
+    
   tasks:
    - name: Create an ec2 launch template
      community.aws.ec2_launch_template:
@@ -10,7 +16,8 @@
        image_id: "{{ vseries_ami_id }}"
        key_name: "{{ aws_key }}"
        instance_type: "{{ vseries_instance_type }}"
-       instance_type: "{{ vseries_instance_type }}"      
+       instance_type: "{{ vseries_instance_type }}"  
+       user_data: "{{ lookup('file', user_data.sh) }}"
        network_interfaces:
         - delete_on_termination: yes
           device_index: 0

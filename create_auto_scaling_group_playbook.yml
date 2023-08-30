@@ -22,6 +22,7 @@
           delete_on_termination: yes
           device_index: 0
           groups: "{{ aws_security_group_eth1 }}"
-          subnet_id: "{{ vpc_subnet_id_eth1 }}"          
+          subnet_id: "{{ vpc_subnet_id_eth1 }}"   
+       region: "{{ aws_region }}"
        #iam_instance_profile:
 

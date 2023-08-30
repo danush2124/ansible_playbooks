@@ -10,7 +10,6 @@
        image_id: "{{ vseries_ami_id }}"
        key_name: "{{ aws_key }}"
        region: "{{ aws_region }}"
-       network_interfaces:
        security_groups: "{{ aws_security_group }}"
        instance_type: "{{ vseries_instance_type }}"
 

@@ -3,7 +3,7 @@
   gather_facts: false
   tasks:
   
-   - name: create TargetTrackingScaling custom policy
+   - name: Delete TargetTrackingScaling custom policy
      ec2_scaling_policy:
        aws_access_key: "{{ aws_access_key }}"
        aws_secret_key: "{{ aws_secret_key }}"      
@@ -11,7 +11,7 @@
        state: absent
        region: "{{ aws_region }}" 
 
-   - name: Create Autoscaling Group 
+   - name: Delete Autoscaling Group 
      amazon.aws.autoscaling_group:
        aws_access_key: "{{ aws_access_key }}"
        aws_secret_key: "{{ aws_secret_key }}"      
@@ -20,7 +20,7 @@
        state: absent
        region: "{{ aws_region }}"
        
-   - name: create launch config
+   - name: Delete launch config
      community.aws.autoscaling_launch_config:
        aws_access_key: "{{ aws_access_key }}"
        aws_secret_key: "{{ aws_secret_key }}"

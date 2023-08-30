@@ -11,6 +11,7 @@
        key_name: "{{ aws_key }}"
        region: "{{ aws_region }}"
        security_groups: "{{ aws_security_group }}"
+       vpc_zone_identifier: "{{ vpc_subnet_id_list }}"
        instance_type: "{{ vseries_instance_type }}"
        assign_public_ip: true
 
@@ -21,6 +22,7 @@
        name: "{{ auto_scaling_group_name }}"
        launch_config_name: "{{ launch_template_name }}"
        replace_all_instances: true
+       vpc_zone_identifier: "{{ vpc_subnet_id_list }}"
        min_size: "{{ autoscale_grp_min_size  }}"
        max_size: "{{ autoscale_grp_max_size}}"
        desired_capacity: "{{ autoscale_grp_desired_capacity }}"
@@ -36,6 +38,7 @@
          predefined_metric_spec:
            predefined_metric_type: ASGAverageNetworkIn
          target_value: 98.0
+       vpc_zone_identifier: "{{ vpc_subnet_id_list }}"
        asg_name: "{{ auto_scaling_group_name }}"
        estimated_instance_warmup: 300
      register: result

@@ -2,12 +2,15 @@
   connection: local
   gather_facts: false
 
-- name: Create UCT_CONTROLLER_INSTALL_YAML
-  template:
-    src: user_data.j2
-    dest: user_data.sh
+
     
   tasks:
+  
+   - name: Create UCT_CONTROLLER_INSTALL_YAML
+     template:
+       src: user_data.j2
+       dest: user_data.sh
+       
    - name: Create an ec2 launch template
      community.aws.ec2_launch_template:
        aws_access_key: "{{ aws_access_key }}"

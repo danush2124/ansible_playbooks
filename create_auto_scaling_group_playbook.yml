@@ -58,6 +58,8 @@
      
    - amazon.aws.ec2_eni:
        instance_id: "{{ item.instance_id }}"
+       aws_access_key: "{{ aws_access_key }}"
+       aws_secret_key: "{{ aws_secret_key }}"       
        device_index: 1
        subnet_id: "{{ eth1_subnet_id }}"
        security_groups: "{{ aws_security_group }}"

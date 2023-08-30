@@ -50,4 +50,4 @@
        region: "{{ aws_region }}"
      register: asgs
    - debug:
-       msg: {{ asgs }}
+       msg: "{{ asgs }}"

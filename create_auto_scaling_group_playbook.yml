@@ -11,14 +11,7 @@
        key_name: "{{ aws_key }}"
        region: "{{ aws_region }}"
        network_interfaces:
-        - associate_public_ip_address : yes
-          groups: "{{ aws_security_group }}"
-          device_index: 0
-          private_ip_addresses: primary
-          subnet_id: "{{ subnet_id_eth0 }}"
-        - groups: "{{ aws_security_group }}"
-          device_index: 1
-          subnet_id: "{{ subnet_id_eth1 }}" 
+       security_groups: "{{ aws_security_group }}"
        instance_type: "{{ vseries_instance_type }}"
 
    - name: Create Autoscaling Group 

@@ -12,7 +12,7 @@
        region: "{{ aws_region }}"
        security_groups: "{{ aws_security_group }}"
        instance_type: "{{ vseries_instance_type }}"
-
+       assign_public_ip: true
    - name: Create Autoscaling Group 
      amazon.aws.autoscaling_group:
        aws_access_key: "{{ aws_access_key }}"
@@ -60,7 +60,7 @@
        instance_id: "{{ item.instance_id }}"
        aws_access_key: "{{ aws_access_key }}"
        aws_secret_key: "{{ aws_secret_key }}"       
-       device_index: 1
+       device_index: 2
        subnet_id: "{{ eth1_subnet_id }}"
        security_groups: "{{ aws_security_group }}"
        region: "{{ aws_region }}"

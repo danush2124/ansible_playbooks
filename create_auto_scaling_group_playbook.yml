@@ -11,7 +11,7 @@
        key_name: "{{ aws_key }}"
        region: "{{ aws_region }}"
        security_groups: "{{ aws_security_group }}"
-       vpc_zone_identifier: "{{ vpc_subnet_id_list }}"
+       #vpc_zone_identifier: "{{ vpc_subnet_id_list }}"
        instance_type: "{{ vseries_instance_type }}"
        assign_public_ip: true
 

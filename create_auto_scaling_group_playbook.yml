@@ -15,7 +15,7 @@
        key_name: "{{ aws_key }}"
        instance_type: "{{ vseries_instance_type }}"
        instance_type: "{{ vseries_instance_type }}"  
-       user_data: {{ user_data }}
+       user_data: "{{ user_data }}"
        network_interfaces:
         - delete_on_termination: yes
           device_index: 0

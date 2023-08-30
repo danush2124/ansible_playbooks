@@ -10,7 +10,6 @@
        image_id: "{{ vseries_ami_id }}"
        key_name: "{{ aws_key }}"
        instance_type: "{{ vseries_instance_type }}"
-       security_groups: "{{ aws_security_group }}"
        instance_type: "{{ vseries_instance_type }}"      
        network_interfaces:
         - associate_public_ip_address: yes

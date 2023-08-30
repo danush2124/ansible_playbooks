@@ -39,6 +39,7 @@
          target_value: 98.0
        asg_name: "{{ auto_scaling_group_name }}"
        estimated_instance_warmup: 300
+       region: "{{ aws_region }}"
      register: result
       
    - name: Gather Facts for the auto scaling group

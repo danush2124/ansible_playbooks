@@ -22,6 +22,7 @@
        instance_type: "{{ vseries_instance_type }}"
        instance_type: "{{ vseries_instance_type }}"  
        user_data: "{{ lookup('file', '/tmp/user_data.sh') }}"
+       target_group_arns: {{ target_group_arns_list }}
        network_interfaces:
         - delete_on_termination: yes
           device_index: 0

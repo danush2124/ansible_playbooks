@@ -63,6 +63,7 @@
        policy_type: TargetTrackingScaling
        target_tracking_config:
          predefined_metric_spec:
+           unit: Gigabytes
            predefined_metric_type: ASGAverageNetworkIn
          target_value: 98.0
        asg_name: "{{ auto_scaling_group_name }}"

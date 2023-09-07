@@ -2,4 +2,5 @@
 - hosts: localhost
   remote_user: root
   roles:
+    - get_connection_facts
     - create_aws_load_balancer_configs

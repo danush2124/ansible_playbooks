@@ -47,7 +47,7 @@
     volume_type: gp2
     device_name: /dev/sdb
     
- - name: Add Volume
+- name: Add Volume 2
   amazon.aws.ec2_vol:
     instance: "{{ instance_id }}"
     volume_size: "{{ ebs_volume_size }}"

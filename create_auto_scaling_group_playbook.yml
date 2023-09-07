@@ -18,5 +18,6 @@
        aws_access_key: "{{ aws_access_key }}"
        aws_secret_key: "{{ aws_secret_key }}"  
      register: output
-   - debug:
-       msg: "{{ output }}"
+   - set_fact:
+       target_group-arn: "{{ output.target_groups[0].target_group_arn }}"
+       

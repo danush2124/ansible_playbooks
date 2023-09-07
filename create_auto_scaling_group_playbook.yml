@@ -14,6 +14,7 @@
    - name: Gather information about a target group
      community.aws.elb_target_group_info:
        names: ["{{ gwlb_target_group_name }}"]
+       region: "{{ aws_region }}"
      register: output
    - debug:
        msg: "{{ output }}"

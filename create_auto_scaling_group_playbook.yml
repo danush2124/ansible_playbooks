@@ -19,5 +19,5 @@
        aws_secret_key: "{{ aws_secret_key }}"  
      register: output
    - set_fact:
-       target_group_arn: "{{ output.target_groups[0][target_group_arn] }}"
+       target_group_arn: "{{ output.target_groups[0] }}"
        

@@ -13,7 +13,7 @@
     body: {
             "alias": "{{ monitoring_domain_alias }}",
             "useLoadBalancer": "{{ useLoadBalancer }}",
-            "uniformTrafficPolicy": "{{ uniformTrafficPolicy }},
+            "uniformTrafficPolicy": "{{ uniformTrafficPolicy }}",
             "mtu": "{{ mtu | default(9000) }}",
             "platform": "{{ platform }}"
             }

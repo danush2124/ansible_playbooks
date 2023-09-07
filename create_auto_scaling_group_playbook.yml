@@ -20,4 +20,77 @@
      register: output
    - set_fact:
        target_group_arn_value: "{{ output.target_groups[0].target_group_arn }}"
+   - name: Create an ec2 launch template
+     community.aws.ec2_launch_template:
+       aws_access_key: "{{ aws_access_key }}"
+       aws_secret_key: "{{ aws_secret_key }}"
+       name: "{{ launch_template_name }}"
+       image_id: "{{ vseries_ami_id }}"
+       key_name: "{{ aws_key }}"
+       instance_type: "{{ vseries_instance_type }}"
+       instance_type: "{{ vseries_instance_type }}"  
+       user_data: "{{ lookup('file', '/tmp/user_data.sh') }}"
+       
+       network_interfaces:
+        - delete_on_termination: yes
+          device_index: 0
+          groups: "{{ aws_security_group_eth }}"
+          subnet_id: "{{ vpc_subnet_id_eth }}"
+        - delete_on_termination: yes
+          device_index: 1
+          groups: "{{ aws_security_group_eth }}"
+          subnet_id: "{{ vpc_subnet_id_eth }}"   
+       region: "{{ aws_region }}"
+
+   - name: Create Autoscaling Group 
+     amazon.aws.autoscaling_group:
+       aws_access_key: "{{ aws_access_key }}"
+       aws_secret_key: "{{ aws_secret_key }}"      
+       name: "{{ auto_scaling_group_name }}"
+       target_group_arns:
+        - "{{ target_group_arn_value }}"
+       launch_template: 
+         version: 1
+         launch_template_name: "{{ launch_template_name }}"
+       replace_all_instances: true
+       vpc_zone_identifier: "{{ vpc_subnet_id_list }}"
+       min_size: "{{ autoscale_grp_min_size  }}"
+       max_size: "{{ autoscale_grp_max_size}}"
+       desired_capacity: "{{ autoscale_grp_desired_capacity }}"
+       tags:
+        - name: "VSeries-Test"
+          propagate_at_launch: false
+       region: "{{ aws_region }}"
+
+   - name: create TargetTrackingScaling custom policy
+     ec2_scaling_policy:
+       aws_access_key: "{{ aws_access_key }}"
+       aws_secret_key: "{{ aws_secret_key }}"      
+       name: "target-tracking-policy"
+       policy_type: TargetTrackingScaling
+       target_tracking_config:
+         predefined_metric_spec:
+           unit: Gigabytes
+           predefined_metric_type: ASGAverageNetworkIn
+         target_value: 98.0
+       asg_name: "{{ auto_scaling_group_name }}"
+       estimated_instance_warmup: 300
+       region: "{{ aws_region }}"
+     register: result
+      
+   - name: Gather Facts for the auto scaling group
+     community.aws.ec2_asg_info:
+       aws_access_key: "{{ aws_access_key }}"
+       aws_secret_key: "{{ aws_secret_key }}"     
+       name:  "{{ auto_scaling_group_name }}"
+       region: "{{ aws_region }}"
+     register: asgs
+     
+   - debug:
+       msg: "{{ asgs.results }}"
+       
+   - set_fact:
+       vseries_instance_list: "{{ item.instances }}"
+     with_items: "{{ asgs.results }}"   
+
        

@@ -12,7 +12,8 @@
     timeout: 30
     body: {
             "alias": "{{ monitoring_domain_alias }}",
-            "useLoadBalancer": false,
+            "useLoadBalancer": "{{ useLoadBalancer }}",
+            "uniformTrafficPolicy": "{{ uniformTrafficPolicy }},
             "mtu": "{{ mtu | default(9000) }}",
             "platform": "{{ platform }}"
             }

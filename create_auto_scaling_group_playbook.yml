@@ -13,7 +13,7 @@
        content: "{{ template_value | b64encode }}"
    - name: Gather information about a target groups named 'tg1' and 'tg2'
      community.aws.elb_target_group_info:
-       names:tg1  
+       name: tg1  
    - name: Create an ec2 launch template
      community.aws.ec2_launch_template:
        aws_access_key: "{{ aws_access_key }}"

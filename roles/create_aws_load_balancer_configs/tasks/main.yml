@@ -1,2 +1,34 @@
 ---
 # tasks file for create_aws_load_balancer_configs
+- name: Create Load Balancer Configs for Monitoring Domain
+  uri:
+    url: https://{{fm_ip}}/api/v1.3/cloud/aws/loadBalancing/configs?connId="{{ connection_dict[connection_alias] }}"
+    method: Post
+    user: "{{ fm_username }}"
+    password: "{{ fm_password }}"
+    force_basic_auth: yes
+    validate_certs: False
+    return_content: yes
+    timeout: 30
+    body: {
+	        "connId": "{{ connection_dict[connection_alias] }}",
+	        "loadBalancerName": {{ gwlb_name }},
+	        "loadBalancerArn": {{ gwlb_arn }},
+	        "autoScalingGroupName": {{ auto_scaling_group_name }},
+	        "autoScalingGroupArn": {{ auto_scaling_group_arn }}
+    body_format: json
+    status_code: 201,200,409
+  register: output
+  ignore_errors: True
+
+- debug:
+    msg: "Monitoring Domain successfully deployed"
+  when:  output.status in [200,201] 
+  
+- debug:
+    msg: "Monitoring Domain with the same alias exists and has monitoring domain ID {{ md_alias_id_dict [ monitoring_domain_alias ] }}, creation failed"
+  when:  output.status in [409]
+  
+- debug:
+    msg: "Monitoring Domain deployment failed"
+  when:  output.status not in [200,201,409]

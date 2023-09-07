@@ -13,6 +13,7 @@
     body: {
             "alias": "{{ monitoring_domain_alias }}",
             "useLoadBalancer": "{{ useLoadBalancer }}",
+            "trafficAquisitionMethod": "VPC Mirroring"
             "uniformTrafficPolicy": "{{ uniformTrafficPolicy }}",
             "mtu": "{{ mtu | default(9000) }}",
             "platform": "{{ platform }}"

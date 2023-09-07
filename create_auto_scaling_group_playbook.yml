@@ -11,6 +11,7 @@
      copy:
        dest: "/tmp/user_data.sh"
        content: "{{ template_value | b64encode }}"
+       
    - name: Gather information about a target group
      community.aws.elb_target_group_info:
        names: ["{{ gwlb_target_group_name }}"]
@@ -18,8 +19,10 @@
        aws_access_key: "{{ aws_access_key }}"
        aws_secret_key: "{{ aws_secret_key }}"  
      register: output
+     
    - set_fact:
        target_group_arn_value: "{{ output.target_groups[0].target_group_arn }}"
+       
    - name: Create an ec2 launch template
      community.aws.ec2_launch_template:
        aws_access_key: "{{ aws_access_key }}"
@@ -47,8 +50,8 @@
        aws_access_key: "{{ aws_access_key }}"
        aws_secret_key: "{{ aws_secret_key }}"      
        name: "{{ auto_scaling_group_name }}"
-       target_group_arns:
-        - "{{ target_group_arn_value }}"
+       #target_group_arns:
+       # - "{{ target_group_arn_value }}"
        launch_template: 
          version: 1
          launch_template_name: "{{ launch_template_name }}"

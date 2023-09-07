@@ -7,7 +7,7 @@
   with_items: "{{ md_connection_dict[monitoring_domain_alias] }}" 
   when: item.alias == connection_alias and (monitoring_domain_alias in md_connection_dict.keys()|list )
   
-- ec2_vpc_net_facts:
+- amazon.aws.ec2_vpc_net_info:
     filters:
       "tag:Name": "{{ centralized_vpc_name }}"
     

@@ -13,7 +13,7 @@
        content: "{{ template_value | b64encode }}"
    - name: Gather information about a target group
      community.aws.elb_target_group_info:
-       name: "{{ gwlb_target_group_name }}"
+       names: ["{{ gwlb_target_group_name }}"]
      register: output
    - debug:
        msg: "{{ output }}"

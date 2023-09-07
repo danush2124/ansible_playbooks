@@ -7,9 +7,33 @@
   with_items: "{{ md_connection_dict[monitoring_domain_alias] }}" 
   when: item.alias == connection_alias and (monitoring_domain_alias in md_connection_dict.keys()|list )
   
-- community.aws.ec2_vpc_net_info:
-    filters:
-      "tag:Name": "{{ centralized_vpc_name }}"
+- name: Create AWS Connection 
+  uri:
+    url: https://{{ fm_ip }}/api/v1.3/cloud/aws/connections
+    method: Post
+    user: "{{ fm_username }}"
+    password: "{{ fm_password }}"
+    force_basic_auth: yes
+    validate_certs: False
+    return_content: yes
+    timeout: 30
+    body: {
+            "alias": "{{ connection_alias }}",
+            "authType": basicCredentials,
+            "regionName": "{{ aws_region }}",
+            "vpcId": "{{ aws_vpc_id }}",
+            "availabilityZone": "{{ aws_availability_zone }}",
+            "accessKey": "{{ aws_access_key }}",
+            "secretKey": "{{ aws_secret_key }}",
+            #"credentialId": "{{ aws_credential_id }}",
+            #"proxyServerId": "{{ aws_proxy_server_id }},
+            "monitoringDomainId": "{{ md_alias_id_dict[monitoring_domain_alias] }}",
+            "secureMirrorTraffic": "{{ aws_secure_mirror_traffic | default(false) }}"
+            }
+    body_format: json
+    status_code: 201,200,409
+  register: output
+  when:  not present_flag 
     
 
 

@@ -1,2 +1,47 @@
 ---
 # tasks file for create_aws_visibility_domain
+- name: Create AWS Visibility Domain
+  uri:
+    url: https://{{fm_ip}}/api/v1.3/cloud/aws/visibilityDomain
+    method: Post
+    user: "{{ fm_username }}"
+    password: "{{ fm_password }}"
+    force_basic_auth: yes
+    validate_certs: False
+    return_content: yes
+    timeout: 30
+    body: {
+            "alias": "{{ monitoring_domain_alias }}",
+            "useLoadBalancer": "{{ useLoadBalancer }}",
+            "uniformTrafficPolicy": "{{ uniformTrafficPolicy }}",
+            "mtu": "{{ mtu | default(9000) }}",
+            "platform": "{{ platform }}"
+            "name": "string",
+            tappingMethod": "gvtap",
+            "mtu": 1500,
+            "userLaunched": true,
+            "useLoadBalancer": false,
+            "connections": []
+            "accessKey": "string",
+            "secretKey": "string",
+            "credentialId": "string",
+            "proxyServerId": "string",
+            "monitoringDomainId": "string",
+            "secureMirrorTraffic": false,            
+            }
+    body_format: json
+    status_code: 201,200,409
+  register: output
+  ignore_errors: True
+
+- debug:
+    msg: "Visibility Domain successfully deployed"
+  when:  output.status in [200,201] 
+  
+- debug:
+    msg: "Visibility Domain with the same alias exists and has monitoring domain ID {{ md_alias_id_dict [ monitoring_domain_alias ] }}, creation failed"
+  when:  output.status in [409]
+  
+- debug:
+    msg: "Visibility Domain deployment failed"
+  when:  output.status not in [200,201,409]

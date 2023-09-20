@@ -11,23 +11,36 @@
     return_content: yes
     timeout: 30
     body: {
-            "alias": "{{ monitoring_domain_alias }}",
-            "useLoadBalancer": "{{ useLoadBalancer }}",
-            "uniformTrafficPolicy": "{{ uniformTrafficPolicy }}",
-            "mtu": "{{ mtu | default(9000) }}",
-            "platform": "{{ platform }}"
+            "name": "{{ monitoring_domain_alias }}",
+            tappingMethod": "{{ tapping_method }}",
+            "mtu": "{{ visibility_domain_mtu | default(8951) }}",
+            "userLaunched": '{{ user_launched_state }}',
+            "useLoadBalancer": '{{ load_balancer_state }}',
+            "connections": [
+            {
+            "authType": "{{ authentication_type | default(basicCredentials) }}",     #basicCredentials or ec2InstanceRole
+            "regionName": "{{ aws_region }}",
+            "vpcs": [
+            {
+            #"id": "string",
             "name": "string",
-            tappingMethod": "gvtap",
-            "mtu": 1500,
-            "userLaunched": true,
-            "useLoadBalancer": false,
-            "connections": []
-            "accessKey": "string",
-            "secretKey": "string",
-            "credentialId": "string",
-            "proxyServerId": "string",
-            "monitoringDomainId": "string",
-            "secureMirrorTraffic": false,            
+            #"ownerId": "string",
+            #"additionalProp1": {}
+            },
+            {
+            #"id": "string",
+            "name": "string",
+            #"ownerId": "string",
+            #"additionalProp1": {}
+            }
+            ],
+            "accessKey": "{{ aws_access_key }}",
+            "secretKey": "{{ aws_secret_key }}",
+            #"credentialId": "string",
+            #"proxyServerId": "string",
+            #"monitoringDomainId": "string",
+            "secureMirrorTraffic": false   
+            ]
             }
     body_format: json
     status_code: 201,200,409

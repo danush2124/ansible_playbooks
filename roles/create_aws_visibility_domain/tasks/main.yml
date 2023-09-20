@@ -23,13 +23,13 @@
             "vpcs": [
             {
             #"id": "string",
-            "name": "string",
+            "name": "{{ aws_vpc_vseries_name }}",
             #"ownerId": "string",
             #"additionalProp1": {}
             },
             {
             #"id": "string",
-            "name": "string",
+            "name": "{{ aws_vpc_target_name }}",
             #"ownerId": "string",
             #"additionalProp1": {}
             }
@@ -40,7 +40,8 @@
             #"proxyServerId": "string",
             #"monitoringDomainId": "string",
             "secureMirrorTraffic": false   
-            ]
+            ],
+            "gvTapFilteringEnabled": false
             }
     body_format: json
     status_code: 201,200,409

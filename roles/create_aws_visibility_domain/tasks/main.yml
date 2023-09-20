@@ -18,7 +18,7 @@
             "useLoadBalancer": "{{ load_balancer_state }}",
             "connections": [
             {
-            "authType": "{{ authentication_type | default(basicCredentials) }}",     #basicCredentials or ec2InstanceRole
+            "authType": "{{ authentication_type | default("basicCredentials") }}",     #basicCredentials or ec2InstanceRole
             "regionName": "{{ aws_region }}",
             "vpcs": [
             {

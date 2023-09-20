@@ -14,8 +14,8 @@
             "name": "{{ monitoring_domain_alias }}",
             tappingMethod": "{{ tapping_method }}",
             "mtu": "{{ visibility_domain_mtu | default(8951) }}",
-            "userLaunched": '{{ user_launched_state }}',
-            "useLoadBalancer": '{{ load_balancer_state }}',
+            "userLaunched": "{{ user_launched_state }}",
+            "useLoadBalancer": "{{ load_balancer_state }}",
             "connections": [
             {
             "authType": "{{ authentication_type | default(basicCredentials) }}",     #basicCredentials or ec2InstanceRole
@@ -40,6 +40,7 @@
             #"proxyServerId": "string",
             #"monitoringDomainId": "string",
             "secureMirrorTraffic": false   
+            }
             ],
             "gvTapFilteringEnabled": false
             }

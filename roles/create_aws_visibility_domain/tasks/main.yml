@@ -18,7 +18,7 @@
 
 - set_fact:
     credential_id: item.id
-  with_items: "{{ output.awsCredentials }}" 
+  with_items: "{{ output.json.awsCredentials }}" 
   when: item.name == "{{ aws_credential_alias }}"
 
   

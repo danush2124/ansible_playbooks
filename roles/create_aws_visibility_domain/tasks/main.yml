@@ -33,7 +33,7 @@
     return_content: yes
     timeout: 30
     body: {
-            "alias": "{{ aws_connection_alias }}",
+            
             "name": "{{ monitoring_domain_alias }}",
             "tappingMethod": "{{ tapping_method }}",
             "mtu": "{{ visibility_domain_mtu | default(8951) }}",
@@ -41,6 +41,7 @@
             "useLoadBalancer": "{{ load_balancer_state }}",
             "connections": [
             {
+            "alias": "{{ aws_connection_alias }}",
             "authType": "{{ authentication_type | default('basicCredentials') }}",     #basicCredentials or ec2InstanceRole
             "regionName": "{{ aws_region }}",
             "vpcs": [

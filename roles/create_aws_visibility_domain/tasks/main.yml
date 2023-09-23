@@ -13,7 +13,8 @@
     body_format: json
     status_code: 201,200
   register: output  
-
+- debug:
+    msg: "{{ output }}"
 
 - set_fact:
     credential_id: item.id

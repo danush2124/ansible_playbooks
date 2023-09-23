@@ -33,6 +33,7 @@
     return_content: yes
     timeout: 30
     body: {
+            "alias": "{{ aws_connection_alias }}",
             "name": "{{ monitoring_domain_alias }}",
             "tappingMethod": "{{ tapping_method }}",
             "mtu": "{{ visibility_domain_mtu | default(8951) }}",

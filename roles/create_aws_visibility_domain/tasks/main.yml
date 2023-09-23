@@ -44,13 +44,13 @@
             "regionName": "{{ aws_region }}",
             "vpcs": [
             {
-            #"id": "string",
+            "id": "{{ aws_vpc_vseries_id }}",
             "name": "{{ aws_vpc_vseries_name }}",
             #"ownerId": "string",
             #"additionalProp1": {}
             },
             {
-            #"id": "string",
+            "id": "{{ aws_vpc_target_id }}",
             "name": "{{ aws_vpc_target_name }}",
             #"ownerId": "string",
             #"additionalProp1": {}

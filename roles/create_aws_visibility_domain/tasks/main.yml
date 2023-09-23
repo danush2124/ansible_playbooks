@@ -34,7 +34,7 @@
     timeout: 30
     body: {
             "name": "{{ monitoring_domain_alias }}",
-            tappingMethod": "{{ tapping_method }}",
+            "tappingMethod": "{{ tapping_method }}",
             "mtu": "{{ visibility_domain_mtu | default(8951) }}",
             "userLaunched": "{{ user_launched_state }}",
             "useLoadBalancer": "{{ load_balancer_state }}",

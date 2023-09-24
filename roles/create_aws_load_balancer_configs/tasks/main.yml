@@ -2,7 +2,7 @@
 # tasks file for create_aws_load_balancer_configs
 - name: Create Load Balancer Configs for Monitoring Domain
   uri:
-    url: https://{{fm_ip}}/api/v1.3/cloud/aws/loadBalancing/configs?connId="{{ connection_dict[connection_alias] }}"
+    url: https://{{fm_ip}}/api/v1.3/cloud/aws/loadBalancing/configs?connId={{ connection_dict[connection_alias] }}
     method: Post
     user: "{{ fm_username }}"
     password: "{{ fm_password }}"

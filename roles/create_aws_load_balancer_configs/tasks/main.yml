@@ -22,11 +22,11 @@
   ignore_errors: True
 
 - debug:
-    msg: "Monitoring Domain successfully deployed"
+    msg: "Load Balancer configuration successfully deployed on connection {{ connection_dict[connection_alias] }}"
   when:  output.status in [200,201] 
   
 - debug:
-    msg: "Monitoring Domain with the same alias exists and has monitoring domain ID {{ md_alias_id_dict [ monitoring_domain_alias ] }}, creation failed"
+    msg: "Load Balancer configuration present on connection {{ connection_dict[connection_alias] }}", creation failed"
   when:  output.status in [409]
   
 - debug:

@@ -11,7 +11,6 @@
     return_content: yes
     timeout: 30
     body: {
-	        "connId": "{{ connection_dict[connection_alias] }}",
 	        "loadBalancerName": "{{ gwlb_name }}",
 	        "loadBalancerArn": "{{ gwlb_arn }}",
 	        "autoScalingGroupName": "{{ auto_scaling_group_name }}",

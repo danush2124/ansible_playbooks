@@ -30,5 +30,5 @@
   when:  output.status in [409]
   
 - debug:
-    msg: "Monitoring Domain deployment failed"
+    msg: "Load Balancer configuration on connection {{ connection_dict[connection_alias] }}, creation failed"
   when:  output.status not in [200,201,409]

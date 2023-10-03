@@ -1,0 +1,6 @@
+- hosts: all
+  gather_facts: yes
+  tasks:
+   - name: Check OS Version of RHEL server
+     debug:
+       msg: "{{ ansible_facts }}"

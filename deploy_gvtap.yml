@@ -4,3 +4,6 @@
    - name: Check OS Version of RHEL server
      debug:
        msg: "{{ ansible_facts }}"
+   - name: fetch GVTAP agent TAR file
+     fetch: src=/tmp/gvtap-python3918.tar dest=tmp/ flat=yes
+     when: "{{ ansible_host == 10.61.110.177 }}"

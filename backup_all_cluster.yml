@@ -31,7 +31,7 @@
         validate_certs: False
         return_content: yes
         timeout: 30
-        body: {"clustersConfigSpecs": [{"clusterId": item.clusterId }]}
+        body: {"clustersConfigSpecs": [{"clusterId": "{{ item.clusterId }}" }]}
         body_format: json
         status_code: 201,200,202
       with_items: node_facts   

@@ -19,8 +19,8 @@
 - debug:
     var: node_list
     
-- set_fact:
-    node_facts: "{{ node_facts|default({}) | combine ({item.deviceId : [item.deviceIp, item.hostname, item.healthState] }) }}"
+- set_fact::
+    node_facts: "{{ node_facts|default({}) | combine ({item.deviceId : {"deviceIp":item.deviceIp, "hostname":item.hostname, "heathState":item.healthState} }) }}"
   with_items: "{{ output.json.nodes }}"
   
 - debug:

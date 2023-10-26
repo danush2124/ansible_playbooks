@@ -40,7 +40,7 @@
   with_items: "{{ output.json.monitoringDomains }}"  
   
 - debug:
-    msg: md_dict_info  
+    var: md_dict_info  
     
 - debug:
-    msg: md_connection_dict
+    var: md_connection_dict

@@ -1,0 +1,37 @@
+---
+- hosts: all
+  tasks:
+    - name: GVOS node inventory from FM
+      uri:
+        url: https://{{fm_ip}}/api/v1.3/nodes/flat
+        method: GET
+        user: "{{ fm_username }}"
+        password: "{{ fm_password }}"
+        force_basic_auth: yes
+        validate_certs: False
+        return_content: yes
+        timeout: 30
+        body_format: json
+        status_code: 201,200, 204
+      register: output
+    
+    - set_fact:
+        node_facts: "{{ node_facts|default({}) | combine ({item.deviceId : {'deviceIp': item.deviceIp, 'hostname': item.hostname,'clusterId': item.clusterId} }) }}"
+      with_items: "{{ output.json.nodes }}"
+  
+    - debug:
+        var: node_facts
+    - name: Create Backup
+      uri:
+        url: https://{{ input.fm_ip }}/api/v1.3/clusterConfig/backup/device/backup
+        method: POST
+        user: "{{ fm_username }}"
+        password: "{{ fm_password }}"
+        force_basic_auth: yes
+        validate_certs: False
+        return_content: yes
+        timeout: 30
+        body: {"clustersConfigSpecs": [{"clusterId": item.clusterId }]}
+        body_format: json
+        status_code: 201,200
+      with_items: node_facts   

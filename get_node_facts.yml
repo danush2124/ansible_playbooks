@@ -2,4 +2,4 @@
   connection: local
   gather_facts: false
   roles: 
-    - get_node_facts_from_fm
+    - get_node_inventory_from_fm

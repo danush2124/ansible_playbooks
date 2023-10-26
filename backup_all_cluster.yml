@@ -23,7 +23,7 @@
         var: node_facts
     - name: Create Backup
       uri:
-        url: https://{{ input.fm_ip }}/api/v1.3/clusterConfig/backup/device/backup
+        url: https://{{ fm_ip }}/api/v1.3/clusterConfig/backup/device/backup
         method: POST
         user: "{{ fm_username }}"
         password: "{{ fm_password }}"

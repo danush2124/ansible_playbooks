@@ -1,4 +1,4 @@
-- hosts: gigamon_nodes
+- hosts: all
   connection: local
   gather_facts: false
   roles: 

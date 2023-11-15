@@ -1,1 +1,7 @@
+Gigamon Ansible Playbooks Execution:
+
+Node related playbooks:
+
+1) Get node info from FM:
+
 

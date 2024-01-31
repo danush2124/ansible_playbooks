@@ -58,3 +58,8 @@
 
 - debug:
    var: diag_list
+- name: save output to local directory
+  copy:
+      content: "{{ item.content | replace('\\n', '\n') }}"           
+      dest: "test.ios"   
+  with_items: "{{ output.results }}"

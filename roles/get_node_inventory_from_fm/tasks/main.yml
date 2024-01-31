@@ -53,4 +53,4 @@
   ignore_errors: true
 
 - debug:
-   var: output
+   var: "{{ output.json }}"

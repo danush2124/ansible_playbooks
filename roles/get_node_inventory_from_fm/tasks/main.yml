@@ -31,4 +31,4 @@
   with_items: "{{ output.json.nodes }}"
   
 - debug:
-    var: {{ cluster_list | unique }} 
+    var: "{{ cluster_list | unique }}"

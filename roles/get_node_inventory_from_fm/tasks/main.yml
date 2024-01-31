@@ -53,7 +53,7 @@
   ignore_errors: true
 
 - set_fact:
-    diag_list: "{{ diag_list|default([]) + [item.content] }}"
+    diag_list: "{{ diag_list|default([]) + [item.content.split('\n')] }}"
   with_items: "{{ output.results }}"
 
 - debug:

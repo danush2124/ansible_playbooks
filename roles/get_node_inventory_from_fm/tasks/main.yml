@@ -49,4 +49,8 @@
     body_format: json
     status_code: 201,200, 204
   with_items: "{{ cluster_list }}"
-  register: output    
+  register: output   
+  ignore_errors: true
+
+- debug:
+   var: output

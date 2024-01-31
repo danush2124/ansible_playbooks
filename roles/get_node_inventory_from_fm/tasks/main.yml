@@ -38,7 +38,7 @@
     
 - name: GVOS node show diag
   uri:
-    url: https://{{fm_ip}}/api/v1.3/system/diag?clusterId="{{ item }}"
+    url: https://{{fm_ip}}/api/v1.3/system/diag?clusterId={{ item }}
     method: GET
     user: "{{ fm_username }}"
     password: "{{ fm_password }}"

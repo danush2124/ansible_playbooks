@@ -30,5 +30,9 @@
     cluster_list: "{{ cluster_list|default([])  + [item.clusterId] }}"
   with_items: "{{ output.json.nodes }}"
   
+- set_fact:
+    cluster_list: "{{ cluster_list|unique }}"
+  
 - debug:
-    var: "{{ cluster_list | unique }}"
+    var: cluster_list
+    

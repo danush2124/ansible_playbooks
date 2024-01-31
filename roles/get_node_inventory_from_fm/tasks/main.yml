@@ -52,5 +52,9 @@
   register: output   
   ignore_errors: true
 
+- set_fact:
+    diag_list: "{{ diag_list|default([]) + [item.content] }}"
+  with_items: "{{ output.results }}"
+
 - debug:
-   var: output
+   var: diag_list

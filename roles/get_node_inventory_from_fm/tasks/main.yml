@@ -27,7 +27,7 @@
     var: node_facts
 
 - set_fact:
-    cluster_dict: "{{ cluster_dict|default({}) | combine ({"clusterId" : item.clusterId  }) }}"
+    cluster_dict: "{{ cluster_dict|default({}) | combine ({ 'clusterId' : item.clusterId  }) }}"
   with_items: "{{ output.json.nodes }}"
   
 - debug:

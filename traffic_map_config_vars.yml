@@ -8,12 +8,4 @@ traffic_maps:
    map_src_port_list: [28/1/x3]
    map_dst_port_list: [28/1/q1]
    map_rules: {}
- - cluster_id: 10.61.110.69
-   map_alias: test_map2
-   map_state: true
-   map_type: regular
-   map_comment: "test map creation"
-   map_sub_type: byRule
-   map_src_port_list: [28/1/x4]
-   map_dst_port_list: [28/1/q2]
-   map_rules: {}
+

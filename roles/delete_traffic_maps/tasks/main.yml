@@ -1,5 +1,5 @@
 --- 
-- name: Create Maps
+- name: Delete Maps
   uri:
     url: https://{{fm_ip}}/api/v1.3/maps/{{ map_alias }}?clusterId={{ cluster_id }}
     method: Delete

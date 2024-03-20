@@ -10,7 +10,8 @@
     validate_certs: False
     return_content: yes
     timeout: 30
-    body: {"nodeAddSpecs": [{"nodeAddress": "{{ node_ip }}","username": "{{ node_username }}","password": "{{ node_password }}","httpsPort": "443","snmpVersion": "v2"}]}
+    body: {"nodeAddSpecs": [{"nodeAddress": "{{ node_ip }}","username": "{{ node_username }}","password": "{{ node_password }}",
+          "httpsPort": "443","snmpVersion": "v2"}]}
     body_format: json
     status_code: 201,200,409  
   register: output

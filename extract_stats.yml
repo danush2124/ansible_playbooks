@@ -14,7 +14,7 @@
         return_content: yes
         timeout: 30
         body_format: json
-      status_code: 201,200, 204
+        status_code: 201,200, 204
       register: output
     - set_fact:
         node_list: "{{ node_list|default([]) + [item.hostname] }}"

@@ -1,0 +1,21 @@
+- hosts: localhost
+  connection: local
+  gather_facts: false 
+  
+  tasks:  
+    - name: Get Stats at 5 minute intervals
+      uri:
+        url: https://{{fm_ip}}/api/0.9/elasticUtils/queryIndices?since=5-minute&indexPattern=fmevents&size=10000
+        method: GET
+        user: "{{ fm_username }}"
+        password: "{{ fm_password }}"
+        force_basic_auth: yes
+        validate_certs: False
+        return_content: yes
+        timeout: 30
+        body_format: json
+        status_code: 201,200,204
+      register: output
+
+    - debug:
+        var: "{{ output }}"

@@ -15,7 +15,7 @@
         timeout: 30
         body_format: json
         status_code: 201,200,204
-      register: {{ output | to_json }}
+      register: "{{ output | to_json }}"
 
     - debug:
-        var: "{{ output }}"
+        var: "{{ output | to_json }}"

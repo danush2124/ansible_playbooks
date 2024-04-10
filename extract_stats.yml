@@ -1,12 +1,30 @@
 - hosts: localhost
   connection: local
   gather_facts: false 
-  vars_files:
-    - traffic_map_config_vars.yml
+  
   tasks:  
+    - name: GVOS node inventory from FM
+      uri:
+        url: https://{{fm_ip}}/api/v1.3/nodes/flat
+        method: GET
+        user: "{{ fm_username }}"
+        password: "{{ fm_password }}"
+        force_basic_auth: yes
+        validate_certs: False
+        return_content: yes
+        timeout: 30
+        body_format: json
+      status_code: 201,200, 204
+      register: output
+    - set_fact:
+        node_list: "{{ node_list|default([]) + [item.hostname] }}"
+      with_items: "{{ output.json.nodes }}"
+    - debug:
+        var: node_list
+    
     - name: Get Stats at 5 minute intervals
       uri:
-        url: https://{{fm_ip}}/api/0.9/elasticUtils/queryIndices?since=5-minute&indexPattern=fmstats&fm.tags=%7BhostName%3D{{hostname}}%7D&size=10000&queryObjects=port
+        url: https://{{fm_ip}}/api/0.9/elasticUtils/queryIndices?since=5-minute&indexPattern=fmstats&fm.tags=hostName{{hostname}}&size=10000&queryObjects=port
         method: GET
         user: "{{ fm_username }}"
         password: "{{ fm_password }}"
@@ -17,4 +35,7 @@
         body_format: json
         status_code: 201,200,204
       register: output
-      with_items: "{{ traffic_maps }}" 
+      with_items: "{{ node_list }}" 
+
+    - debug:
+        var: "{{ output }}"

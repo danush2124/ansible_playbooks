@@ -6,7 +6,7 @@
     - name: Get Stats at 5 minute intervals
       uri:
         url: https://{{fm_ip}}/api/0.9/elasticUtils/queryIndices?since=5-minute&indexPattern=fmevents&size=10000
-        method: GET
+        method: Post
         headers:
           Accept: application/json
         user: "{{ fm_username }}"

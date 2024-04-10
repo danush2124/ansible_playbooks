@@ -14,6 +14,7 @@
         password: "{{ fm_password }}"
         force_basic_auth: yes
         validate_certs: False
+        body: {}
         return_content: yes
         timeout: 30
         status_code: 201,200,204

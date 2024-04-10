@@ -24,7 +24,7 @@
     
     - name: Get Stats at 5 minute intervals
       uri:
-        url: https://{{fm_ip}}/api/0.9/elasticUtils/queryIndices?since=5-minute&indexPattern=fmstats&fm.tags=hostName{{hostname}}&size=10000&queryObjects=port
+        url: https://{{fm_ip}}/api/0.9/elasticUtils/queryIndices?since=5-minute&indexPattern=fmstats&fm.tags=hostName{{item.hostname}}&size=10000&queryObjects=port
         method: GET
         user: "{{ fm_username }}"
         password: "{{ fm_password }}"

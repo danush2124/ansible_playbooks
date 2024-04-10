@@ -16,7 +16,6 @@
         validate_certs: False
         return_content: yes
         timeout: 30
-        body_format: json
         status_code: 201,200,204
       register: output
 

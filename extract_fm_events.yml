@@ -16,4 +16,4 @@
         var: output_events
         
     - debug:
-        var: output.stdout_lines
+        var: "{{ output.stdout_lines| to_nice_json }}"

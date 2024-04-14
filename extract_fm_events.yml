@@ -7,7 +7,7 @@
       shell: "curl -k -u {{fm_username}}:{{fm_password}} -X 'GET' 'https://{{fm_ip}}/api/v1.3/elasticUtils/queryIndices?since={{interval}}&indexPattern=fmevents&size=10000'  -H 'accept: application/json'"
       register: output
       
-    - debug:
+    - set_fact:
         var: {{ output | to_json }}
         
     - set_fact:

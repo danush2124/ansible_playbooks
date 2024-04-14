@@ -9,7 +9,7 @@
 
     - set_fact:
         output_events: "{{ item }}"
-      with_items: "{{ output.stdout_lines }}"
+      with_items: "{{ output.stdout_lines| to_json }}"
       when: item == "hits"
     - debug:
         var: output_events

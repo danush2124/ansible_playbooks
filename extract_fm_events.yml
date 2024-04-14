@@ -4,7 +4,9 @@
   
   tasks:  
     - name: Get Stats at 5 minute intervals
-      shell: "curl -k -u {{fm_username}}:{{fm_password}} -X GET https://{{fm_ip}}/api/0.9/elasticUtils/queryIndices?since=5-minute&indexPattern=fmevents&size=10000&scroll=false&trending=false&rate=false&exclude=true&inventoryIndex=false&skipNormalized=false&skipZeroValues=false&isSourceReqInAggregation=true"
+      shell: "curl -k -u {{fm_username}}:{{fm_password}} -X 'GET' 'https://{{fm_ip}}/api/v1.3/elasticUtils/queryIndices?since=24-hour&indexPattern=fmevents&size=10&scroll=false&trending=false&rate=false&exclude=true&inventoryIndex=false&skipNormalized=false&skipZeroValues=false&isSourceReqInAggregation=true'  -H 'accept: application/json'"
+Request URL
+"
       #args:
       #  warn: False
       register: output

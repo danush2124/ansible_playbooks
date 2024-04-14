@@ -8,4 +8,5 @@
       register: output
 
     - debug:
-        var: output.stdout.hits.hits
+        var: item.hits
+      with_items: output.stdout

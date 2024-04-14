@@ -8,12 +8,9 @@
       register: output
 
     - set_fact:
-        output_events: "{{ item }}"
-      with_items: "{{ output.stdout_lines }}"
-      when: item == "hits"
+        output_events: "{{ output.stdout_lines }}"
       
     - debug:
-        var: output_events
+        var: "{{ output_events|to_json }}"
         
-    - debug:
-        var: "{{ output.stdout_lines| to_nice_json }}"
+

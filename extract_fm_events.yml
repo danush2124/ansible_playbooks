@@ -10,4 +10,4 @@
       register: output
 
     - debug:
-        var: "{{ output | to_json }}"
+        var: "{{ output }}"

@@ -4,10 +4,10 @@
   
   tasks:  
     - name: Get Stats at 5 minute intervals
-      shell: "curl -k -u {{fm_username}}:{{fm_password}} -X 'GET' 'https://{{fm_ip}}/api/v1.3/elasticUtils/queryIndices?since=24-hour&indexPattern=fmevents&size=10000'  -H 'accept: application/json'"
+      shell: "curl -k -u {{fm_username}}:{{fm_password}} -X 'GET' 'https://{{fm_ip}}/api/v1.3/elasticUtils/queryIndices?since=5-minute&indexPattern=fmevents&size=10000'  -H 'accept: application/json'"
       register: output
 
     - debug:
-        var: "{{ item.hits }}"
+        var: "{{ item }}"
       with_items: "{{ output.stdout }}"
       when: item == "hits"

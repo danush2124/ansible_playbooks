@@ -8,7 +8,7 @@
       register: output
 
     - set_fact:
-        output_events: item
+        output_events: "{{ item }}"
       with_items: "{{ output.stdout }}"
       when: item == "hits"
     - debug:

@@ -13,9 +13,7 @@
     - set_fact:
         output_events: "{{ output.stdout_lines }}"
         
-    - debug:
-        var: {{ item | regex_replace(["\"], "") }}
-      with_items: "{{ output_events }}"
+
       
         
 

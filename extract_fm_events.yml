@@ -13,5 +13,3 @@
       when: item == "hits"
     - debug:
         var: output_events
-    - debug:
-        var: output

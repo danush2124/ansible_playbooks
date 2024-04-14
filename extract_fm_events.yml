@@ -10,7 +10,7 @@
     - debug:
         var: output
         
-    - set_facts:
+    - set_fact:
         output_events: "{{ output.stdout_lines }}"
         
     - debug:

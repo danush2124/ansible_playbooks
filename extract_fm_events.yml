@@ -10,3 +10,4 @@
     - debug:
         var: item.hits
       with_items: "{{ output.stdout }}"
+      when: "{{ item }}" == "hits"

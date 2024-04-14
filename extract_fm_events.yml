@@ -6,7 +6,9 @@
     - name: Get Stats at 5 minute intervals
       shell: "curl -k -u {{fm_username}}:{{fm_password}} -X 'GET' 'https://{{fm_ip}}/api/v1.3/elasticUtils/queryIndices?since={{interval}}&indexPattern=fmevents&size=10000'  -H 'Content-Type: application/json'"
       register: output
-
+    - debug:
+        var: "{{ output}}"
+        
     - set_fact:
         output: "{{ output|to_json }}"
       

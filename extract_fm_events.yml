@@ -9,6 +9,7 @@
         method: GET
         headers:
           Content-Type: "application/json"
+          charset: "utf8"
         user: "{{ fm_username }}"
         password: "{{ fm_password }}"
         force_basic_auth: yes

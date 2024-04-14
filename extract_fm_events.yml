@@ -8,6 +8,6 @@
       register: output
 
     - debug:
-        var: "{{ item }}"
+        var: item
       with_items: "{{ output.stdout }}"
-      when: item == hits
+      when: item == "hits"

@@ -14,7 +14,8 @@
         output_events: "{{ output.stdout_lines }}"
         
     - debug:
-        var: output_events
+        var: {{ item.replace("\","") }}
+      with_items: "{{ output_events }}"
       
         
 

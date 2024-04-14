@@ -10,7 +10,7 @@
         var: output
         
     - debug:
-        var: "{{ output.stdout_lines | replace('"',"" }}"
+        var: "{{ output.stdout_lines }}"
       
         
 

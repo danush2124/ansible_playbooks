@@ -8,9 +8,9 @@
       register: output
 
     - set_fact:
-        output_events: "{{ output.stdout_lines }}"
+        output: "{{ output|to_json }}"
       
     - debug:
-        var: "{{ output_events|to_json }}"
+        var: "{{ output.stdout_lines}}"
         
 

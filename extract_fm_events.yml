@@ -10,7 +10,7 @@
         var: output
         
     - set_fact:
-        output: "{{ output||replace("\","") }}"
+        output: "{{ output | replace("\","") }}"
       
     - debug:
         var: "{{ output.stdout_lines}}"

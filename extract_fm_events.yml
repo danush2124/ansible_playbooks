@@ -5,7 +5,7 @@
   tasks:  
     - name: Get Stats at 5 minute intervals
       uri:
-        url: https://{{fm_ip}}/api/0.9/elasticUtils/queryIndices?since=5-minute&indexPattern=fmevents&size=10000
+        url: https://{{fm_ip}}/api/0.9/elasticUtils/queryIndices?since=5-minute&indexPattern=fmevents&size=10000&scroll=false&trending=false&rate=false&exclude=true&inventoryIndex=false&skipNormalized=false&skipZeroValues=false&isSourceReqInAggregation=true
         method: GET
         headers:
           Content-Type: "application/json"

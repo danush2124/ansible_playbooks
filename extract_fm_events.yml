@@ -9,4 +9,4 @@
 
     - debug:
         var: item.hits
-      with_items: output.stdout
+      with_items: "{{ output.stdout }}"

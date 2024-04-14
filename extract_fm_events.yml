@@ -4,20 +4,9 @@
   
   tasks:  
     - name: Get Stats at 5 minute intervals
-      uri:
-        url: https://{{fm_ip}}/api/0.9/elasticUtils/queryIndices?since=5-minute&indexPattern=fmevents&size=10000&scroll=false&trending=false&rate=false&exclude=true&inventoryIndex=false&skipNormalized=false&skipZeroValues=false&isSourceReqInAggregation=true
-        method: GET
-        headers:
-          Content-Type: "application/json"
-          charset: "utf8"
-        user: "{{ fm_username }}"
-        password: "{{ fm_password }}"
-        force_basic_auth: yes
-        validate_certs: False
-        body: {}
-        return_content: yes
-        timeout: 30
-        status_code: 201,200,204
+      shell: "curl -k -u {{fm_username}}:{{fm_password}} -X GET https://{{fm_ip}}/api/0.9/elasticUtils/queryIndices?since=5-minute&indexPattern=fmevents&size=10000&scroll=false&trending=false&rate=false&exclude=true&inventoryIndex=false&skipNormalized=false&skipZeroValues=false&isSourceReqInAggregation=true"
+      args:
+        warn: False
       register: output
 
     - debug:

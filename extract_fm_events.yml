@@ -12,7 +12,5 @@
     - debug:
         var: "{{ output.stdout_lines | replace('"',"" }}"
       
-    - debug:
-        var: "{{ output.stdout_lines }}"
         
 

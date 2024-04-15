@@ -8,12 +8,8 @@
       register: output
       
     - set_fact:
-        var: "{{ output.stdout }}"
+        output_events: "{{ output.stdout }}"
         
-    - set_fact:
-        output_events: "{{ output.stdout_lines | regex_replace('\",' ,'',multiline=True, ignorecase=True) }}"
-        
-
       
         
 

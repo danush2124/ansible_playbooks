@@ -23,19 +23,7 @@
         var: node_list
     
     - name: Get Stats at 5 minute intervals
-      uri:
-        url: https://{{fm_ip}}/api/0.9/elasticUtils/queryIndices?since=5-minute&indexPattern=fmstats&fm.tags=%7hostName%3D{{item.hostname}}&size=10000&queryObjects=port
-        method: GET
-        user: "{{ fm_username }}"
-        password: "{{ fm_password }}"
-        force_basic_auth: yes
-        validate_certs: False
-        return_content: yes
-        timeout: 30
-        body_format: json
-        status_code: 201,200,204
+      shell: "curl -k -u {{fm_username}}:{{fm_password}} -X 'GET' 'https://{{fm_ip}}/api/v1.3/elasticUtils/queryIndices?since={{interval}}&indexPattern=fmstats&fm.tags=%7hostName%3D{{item.hostname}}&size=10000&queryObjects=port'  -H 'accept: application/json'"
       register: output
       with_items: "{{ node_list }}" 
 
-    - debug:
-        var: "{{ output }}"

@@ -2,7 +2,7 @@
   connection: local
   gather_facts: false 
   tasks:  
-    - name: Get Maps
+    - name: Create FM user token
       uri:
         url: https://{{fm_ip}}/api/v1.3/tokens/create
         method: POST

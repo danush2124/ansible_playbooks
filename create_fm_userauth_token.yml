@@ -12,7 +12,7 @@
         validate_certs: False
         return_content: yes
         timeout: 30
-        body: {"username": "{{ username }}","tokenName": "{{ token_name }}","groups": "{{ group_list }}","expiryTimeUnit": "{{ time_unit|default('DAYS') }}","expiryTime": "{{ duration | default(30) }}"}
+        body: {"username": "{{ username }}","tokenName": "{{ token_name }}","groups": "{{ user_group_list }}","expiryTimeUnit": "{{ time_unit|default('DAYS') }}","expiryTime": "{{ duration | default(30) }}"}
         body_format: json
         status_code: 201,200,204
       register: output

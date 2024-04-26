@@ -16,4 +16,10 @@
         body_format: json
         status_code: 201,200,204
       register: output
+    - debug:
+        msg: "Token successfully created"
+      when:  output.status in [200,201,204]
+    - debug:
+        msg: "Token creation not successful"
+      when:  output.status not in [200,201,204]
 

@@ -5,7 +5,7 @@
     - name: Get Maps
       uri:
         url: https://{{fm_ip}}/api/v1.3/tokens/create
-        method: Post
+        method: POST
         user: "{{ fm_username }}"
         password: "{{ fm_password }}"
         force_basic_auth: yes

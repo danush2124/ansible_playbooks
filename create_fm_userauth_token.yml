@@ -1,0 +1,11 @@
+- hosts: localhost
+  connection: local
+  gather_facts: false 
+  tasks:  
+    - name: Loop over role
+      include_role: 
+        name: delete_traffic_maps
+      vars:
+        cluster_id: "{{ item.cluster_id }}"
+        map_alias: "{{ item.map_alias }}"
+      with_items: "{{ traffic_maps }}" 

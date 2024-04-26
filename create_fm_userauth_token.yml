@@ -4,7 +4,7 @@
   tasks:  
     - name: Get Maps
       uri:
-        url: https://{{fm_ip}}/api/v1.3/api/v1.3/tokens/create
+        url: https://{{fm_ip}}/api/v1.3/tokens/create
         method: Post
         user: "{{ fm_username }}"
         password: "{{ fm_password }}"

@@ -2,10 +2,17 @@
   connection: local
   gather_facts: false 
   tasks:  
-    - name: Loop over role
-      include_role: 
-        name: delete_traffic_maps
-      vars:
-        cluster_id: "{{ item.cluster_id }}"
-        map_alias: "{{ item.map_alias }}"
-      with_items: "{{ traffic_maps }}" 
+    - name: Get Maps
+      uri:
+        url: https://{{fm_ip}}/api/v1.3/api/v1.3/tokens/create
+        method: Post
+        user: "{{ fm_username }}"
+        password: "{{ fm_password }}"
+        force_basic_auth: yes
+        validate_certs: False
+        return_content: yes
+        timeout: 30
+        body_format: json
+        status_code: 201,200,204
+      register: output
+

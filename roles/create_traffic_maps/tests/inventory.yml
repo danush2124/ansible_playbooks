@@ -6,5 +6,5 @@ gigamon_nodes:
       map_type: map_type
       map_ sub_type: map_sub_type
       map_src_port_list: "test_port"
-      map_dst_port_list: 100G
+      map_dst_port_list: []
 
